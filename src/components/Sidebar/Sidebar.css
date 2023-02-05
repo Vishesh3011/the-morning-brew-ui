@@ -1,0 +1,124 @@
+.Sidebar{
+    /* border-right: solid 1rem #fff; */
+}
+
+.navbar{
+    display: flex;
+    gap: 1rem;
+    background: var(--color-bg-variant);
+    position: sticky;
+}
+
+.navbarLogo{
+    margin-right: 2rem;
+}
+
+.navbarLogoImage{
+    height: 4.5rem;
+    /* margin-left: 1rem; */
+}
+
+.navbarSearch{
+    display: flex;
+    padding: .4rem;
+    margin-left: auto;
+}
+
+.navbarSearchDiv{
+    width: 55rem;
+    height: 2rem;
+    padding-top: 0.8rem;
+}
+
+.navbarSearchBar{
+    height: 2rem;
+    width: 100%;
+    border-radius: 2rem;
+    padding-left: 1rem;
+    font-size: 18px;
+}
+
+.navbarOptions {
+    display: flex;
+    justify-content: flex-start;
+    /* color: var(--color-light); */
+    /* transition: var(--transition); */
+    padding: .4rem;
+    padding-top: 1.5rem;
+    margin-right: 5rem;
+}
+
+.navbarUserIcon{
+    margin: .5rem .5rem;
+    border-radius: 50%;
+    background-color: gray;
+    height: 40px;
+    width: 45px;
+}
+
+.navbarOption{
+    margin-top: .8rem;
+    /* margin-left: .5rem; */
+    font-size: 18px;
+}
+
+.navbarOptionsIcon{
+    margin: .8rem 1rem;
+}
+
+.subMenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.toFlex{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (max-width: 1024px){
+    .navbar{
+        gap: 0rem
+    }
+    
+    .navbarSearchDiv{
+        width: 30rem;
+        height: 2rem;
+        padding-top: 0.7rem;
+    }
+
+    .navbarUserIcon{
+        margin: .5rem .4rem;
+    }
+}
+  
+@media screen and (max-width: 600px){
+    .navbarLogoImage{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar{
+        gap: 0;
+    }
+
+    .navbarOptions{
+        display: none;
+        margin-right: 2rem;
+    }
+
+    .navbarOptionsSmall{
+        display: flex;
+    }
+
+    .navbarSearchDiv{
+        width: 10rem;
+        height: 2rem;
+        padding-top: 0.7rem;
+    }
+
+    .navbarOptionsIcon{
+        margin: 0.8rem .5rem;
+    }
+}

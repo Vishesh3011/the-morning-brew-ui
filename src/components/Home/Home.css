@@ -1,0 +1,27 @@
+.appName{
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.news{
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* column-gap: -10rem; */
+    margin-left: 20rem;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 1024px){
+    .news{
+        grid-template-columns: 1fr 1fr;
+        margin-left: 0;
+    }
+}
+  
+@media screen and (max-width: 600px){
+   .news{
+    grid-template-columns: 1fr;
+    margin-left: 0;
+   }
+}

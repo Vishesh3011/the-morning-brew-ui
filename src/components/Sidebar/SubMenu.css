@@ -1,0 +1,20 @@
+.subMenu{
+    margin-left: 4rem;
+    margin-top: 1rem;
+    font-size: 17px;
+    font-family: 'Roboto';
+}
+
+.subBarLabel{
+    margin-left: 2rem;
+}
+
+.subBarLink{
+    display: flex;
+    flex-direction: row;
+}
+
+.toFlexThis{
+    display: flex;
+    flex-direction: row;
+}
