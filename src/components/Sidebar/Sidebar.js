@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../Login/AuthContext';
@@ -70,9 +70,7 @@ function PersistentDrawerLeft() {
 
   let [open, setOpen] = React.useState(true);
 
-  // if(window.innerWidth <= 600){
-  //   setOpen = false;
-  // }
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,7 +98,12 @@ function PersistentDrawerLeft() {
   const [subNav, setSubNav] = useState(false);
 
   const showSubNav = () => setSubNav(!subNav);
-
+  useEffect(() => {
+    if(window.innerWidth <= 850){
+      console.log("widht");
+      setOpen(false);
+    }
+  },[window.innerWidth <= 850])
   return (
     <Box sx={{ display: 'flex' }} className="Sidebar">
       {/* <CssBaseline /> */}
@@ -134,14 +137,16 @@ function PersistentDrawerLeft() {
       <Drawer
         sx={{
           width: drawerWidth,
+           
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
             backgroundColor: '#302b31',
             color: '#d5cdc4',
-            borderRight: 'solid 1px #d5cdc4'
+            borderRight: 'solid 1px #d5cdc4',
           },
+          
         }}
         variant="persistent"
         anchor="left"
