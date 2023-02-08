@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../Login/AuthContext';
 
 import Box from '@mui/material/Box';
@@ -69,7 +69,7 @@ function PersistentDrawerLeft() {
   const theme = useTheme();
 
   let [open, setOpen] = React.useState(true);
-  
+
   // if(window.innerWidth <= 600){
   //   setOpen = false;
   // }
@@ -89,43 +89,43 @@ function PersistentDrawerLeft() {
   async function handleLogout() {
     setError('');
     try {
-      if(currentUser){
+      if (currentUser) {
         await logout();
         navigate('/');
       }
-    }catch{
-        setError('Failed to log out');
+    } catch {
+      setError('Failed to log out');
     }
-}
-    const [subNav, setSubNav] = useState(false);
+  }
+  const [subNav, setSubNav] = useState(false);
 
-    const showSubNav = () => setSubNav(!subNav);
+  const showSubNav = () => setSubNav(!subNav);
 
   return (
-    <Box sx={{ display: 'flex' }} className = "Sidebar">
+    <Box sx={{ display: 'flex' }} className="Sidebar">
       {/* <CssBaseline /> */}
       <AppBar position="fixed" open={open}>
         <Toolbar className="navbar">
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: 'none' }) }}
-            >
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          >
             <MenuIcon />
-          </IconButton>    
+          </IconButton>
           <div className='navbarLogo'>
-            <Link to = "/">
-              <img src = {logo} alt = "" className='navbarLogoImage'/>
+            <Link to="/">
+              <img src={logo} alt="" className='navbarLogoImage' />
             </Link>
           </div>
           <div className='navbarSearch'>
             <div className='navbarSearchDiv'>
-              <input type='text' name = 'search' className='navbarSearchBar'/>
+              <input type='text' name='search' className='navbarSearchBar' />
             </div>
             <div>
-              <SearchIcon className='navbarOptionsIcon'/>
+              <SearchIcon className='navbarOptionsIcon' />
             </div>
           </div>
         </Toolbar>
@@ -148,38 +148,38 @@ function PersistentDrawerLeft() {
         open={open}
       >
         <DrawerHeader color='#d5cdc4'>
-          <Link to = {!currentUser && '/login'}>
+          <Link to={!currentUser && '/login'}>
             <div onClick={handleLogout} className='navbarOptionsSmall navbarOptions'>
-            {/* <div className='navbarOptionsSmall navbarOptions'> */}
-              <img alt ="" className='navbarUserIcon'/>
-                  <p className='navbarOption'>Hello, &nbsp;</p>
-                  <p className='navbarOption'>
-                    {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}
-                  </p>
+              {/* <div className='navbarOptionsSmall navbarOptions'> */}
+              <img alt="" className='navbarUserIcon' />
+              <p className='navbarOption'>Hello, &nbsp;</p>
+              <p className='navbarOption'>
+                {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}
+              </p>
             </div>
           </Link>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{color: '#d5cdc4'}}/> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#d5cdc4' }} /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider color="#d5cdc4"/>
+        <Divider color="#d5cdc4" />
         <List>
           <ListItem>
-            <Link to = "/">
+            <Link to="/">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <HomeIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <HomeIcon />
                 </ListItemIcon>
                 <ListItemText>Home</ListItemText>
               </ListItemButton>
             </Link>
           </ListItem>
           <ListItem>
-            <Link to = {!currentUser && '/login'}>
-            <div onClick={handleLogout}>
+            <Link to={!currentUser && '/login'}>
+              <div onClick={handleLogout}>
                 <ListItemButton>
-                  <ListItemIcon sx={{color: '#d5cdc4'}}>
-                    <LoginIcon/>
+                  <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                    <LoginIcon />
                   </ListItemIcon>
                   <ListItemText>{currentUser ? 'Log out' : 'Login'}</ListItemText>
                 </ListItemButton>
@@ -187,10 +187,10 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem>
           <ListItem>
-            <Link to ="/SavedNews">
+            <Link to="/SavedNews">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <BookmarkBorderIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <BookmarkBorderIcon />
                 </ListItemIcon>
                 <ListItemText>Saved News</ListItemText>
               </ListItemButton>
@@ -207,66 +207,66 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem> */}
         </List>
-        <Divider color="#d5cdc4"/>
+        <Divider color="#d5cdc4" />
         <List>
           <ListItem>
-            <Link to = "/general">
+            <Link to="/general">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <FeedIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <FeedIcon />
                 </ListItemIcon>
                 <ListItemText>Latest</ListItemText>
               </ListItemButton>
             </Link>
           </ListItem>
           <ListItem>
-            <Link to = "/DatedNews">
+            <Link to="/DatedNews">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <CalendarMonthIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <CalendarMonthIcon />
                 </ListItemIcon>
                 <ListItemText>Top News by Date</ListItemText>
               </ListItemButton>
             </Link>
           </ListItem>
           <ListItem>
-            <div className = "toFlex" onClick={showSubNav}>
+            <div className="toFlex" onClick={showSubNav}>
               <div>
                 <ListItemButton>
-                  <ListItemIcon sx={{color: '#d5cdc4'}}>
-                    <CategoryIcon/>
+                  <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                    <CategoryIcon />
                   </ListItemIcon>
                   <ListItemText>
-                      Categories
+                    Categories
                   </ListItemText>
-                  <ListItemIcon  sx={{color: '#d5cdc4'}}>{!subNav ? <ArrowDropDownIcon/> : <ArrowDropUpIcon/>}</ListItemIcon>
+                  <ListItemIcon sx={{ color: '#d5cdc4' }}>{!subNav ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}</ListItemIcon>
                 </ListItemButton>
               </div>
               <div>
                 {subNav && SubBarData.map((item, index) => {
-                  return <SubMenu item = {item} key = {index}/>
+                  return <SubMenu item={item} key={index} />
                 })}
               </div>
             </div>
           </ListItem>
         </List>
-        <Divider color="#d5cdc4"/>
+        <Divider color="#d5cdc4" />
         <List>
           <ListItem>
-            <Link to = "/ContactUs">
+            <Link to="/ContactUs">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <ContactPageIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <ContactPageIcon />
                 </ListItemIcon>
                 <ListItemText>Contact Us</ListItemText>
               </ListItemButton>
             </Link>
           </ListItem>
           <ListItem>
-            <Link to = "AboutUs">
+            <Link to="AboutUs">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
-                  <InfoIcon/>
+                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+                  <InfoIcon />
                 </ListItemIcon>
                 <ListItemText>About Our Team</ListItemText>
               </ListItemButton>

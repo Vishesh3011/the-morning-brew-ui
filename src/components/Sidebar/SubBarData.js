@@ -26,12 +26,12 @@ export const SubBarData = [
     },
     {
         title: 'Sports',
-        path: '/Sports',
+        path: '/sports',
         icon: <SportsIcon/>
     },
     {
         title: 'Science',
-        path: '/Science',
+        path: '/science',
         icon: <ScienceIcon/>
     },
     // {

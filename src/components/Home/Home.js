@@ -28,8 +28,8 @@ function Home( { category } ) {
         <h1>The Morning Brew</h1>
       </section> */}
       <section className='news' id = "home">
-        {news.map(ns => (ns.urlToImage &&
-        <NewsCard className='homeNewsCard' key = {ns.source.id} title = {ns.title} description = {ns.description} image = {ns.urlToImage} link = {ns.url} datePublished = {ns.publishedAt} author = {ns.author} source = {ns.source.name}/>
+        {news.map((ns, index) => (ns.urlToImage &&
+        <NewsCard className='homeNewsCard' key = {index} title = {ns.title} description = {ns.description} image = {ns.urlToImage} link = {ns.url} datePublished = {ns.publishedAt} author = {ns.author} source = {ns.source.name}/>
         ))}
         </section>
     </div>
