@@ -26,8 +26,8 @@ function App() {
           <ResponsiveDrawer/>
           <Routes>
               <Route path = "/" element = {<><Home category = {requests.general1}/></>}></Route>
-              <Route path = "/general" element = {<><Home category = {requests.general2}/></>}></Route>
               <Route path = "/sports" element = {<><Home  category={requests.sports}/></>}></Route>
+              <Route path = "/general" element = {<><Home category = {requests.general2}/></>}></Route>
               <Route path = "/business" element = {<><Home category = {requests.business}/></>}></Route>
               <Route path = "/entertainment" element = {<><Home  category={requests.entertainment}/></>}></Route>
               <Route path = "/science" element = {<><Home category = {requests.science}/></>}></Route>

@@ -10,7 +10,7 @@ import { useStateValue } from '../stateProvider';
 
 function NewsCard({ title, description, image, link, datePublished, author, source }) {
     const [{ savedNews }, dispatch] = useStateValue();
-
+    // console.log(savedNews);
     const addToSaved = () => {
       dispatch({
         type: 'ADD_TO_SAVED',
@@ -27,6 +27,7 @@ function NewsCard({ title, description, image, link, datePublished, author, sour
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
+  
   
 
   return (
