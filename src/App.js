@@ -17,6 +17,22 @@ import requests from './components/requests';
 
 import { AuthProvider } from './components/Login/AuthContext';
 
+const routes = [
+  { path: "/", category: requests.general1 },
+  { path: "/sports", category: requests.sports },
+  { path: "/general", category: requests.general2 },
+  { path: "/business", category: requests.business },
+  { path: "/entertainment", category: requests.entertainment },
+  { path: "/science", category: requests.science },
+  { path: "/lifestyle", category: requests.lifestyle },
+  { path: "/india", category: requests.india },
+  { path: "/world", category: requests.world },
+  { path: "/health", category: requests.health },
+  { path: "/login", element: <Login/> },
+  { path: "/signup", element: <SignUp/> },
+  // { path: "/savedNews", element: <SavedNews/> },
+];
+
 function App() {
   return (
     <Router>
@@ -25,23 +41,10 @@ function App() {
           {/* <Navbar/> */}
           <ResponsiveDrawer/>
           <Routes>
-              <Route path = "/" element = {<><Home category = {requests.general1}/></>}></Route>
-              <Route path = "/sports" element = {<><Home  category={requests.sports}/></>}></Route>
-              <Route path = "/general" element = {<><Home category = {requests.general2}/></>}></Route>
-              <Route path = "/business" element = {<><Home category = {requests.business}/></>}></Route>
-              <Route path = "/entertainment" element = {<><Home  category={requests.entertainment}/></>}></Route>
-              <Route path = "/science" element = {<><Home category = {requests.science}/></>}></Route>
-              <Route path = "/lifestyle" element = {<><Home  category={requests.lifestyle}/></>}></Route>
-              <Route path = "/india" element = {<><Home  category={requests.india}/></>}></Route>
-              <Route path = "/world" element = {<><Home  category={requests.world}/></>}></Route>
-              <Route path = "/health" element = {<><Home  category={requests.health}/></>}></Route>
-              
-              <Route path = '/login' element={<><Login/></>}></Route>
-              <Route path = '/signup' element={<><SignUp/></>}></Route>
-
-              {/* <Route path = '/savedNews' element={<><SavedNews/></>}></Route> */}
+            {routes.map(({ path, category, element }) => (
+              <Route key={path} path={path} element={element || <Home category={category} />} />
+            ))}
           </Routes>
-          {/* <Footer/> */}
         </div>
       </AuthProvider>
     </Router>
