@@ -76,6 +76,14 @@
     flex-direction: column;
 }
 
+.sideBarListItem{
+    transition: var(--transition);
+}
+
+.sideBarListItem:hover{
+    background: var(--color-bg);
+}
+
 
 @media screen and (max-width: 1024px){
     .navbar{

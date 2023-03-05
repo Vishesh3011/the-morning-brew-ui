@@ -144,7 +144,6 @@ function PersistentDrawerLeft() {
             boxSizing: 'border-box',
             backgroundColor: '#302b31',
             color: '#d5cdc4',
-            borderRight: 'solid 1px #d5cdc4',
           },
           
         }}
@@ -169,7 +168,7 @@ function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider color="#d5cdc4" />
         <List>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <Link to="/">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>
@@ -179,7 +178,7 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <Link to={!currentUser && '/login'}>
               <div onClick={handleLogout}>
                 <ListItemButton>
@@ -191,7 +190,7 @@ function PersistentDrawerLeft() {
               </div>
             </Link>
           </ListItem>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <Link to="/SavedNews">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>
@@ -213,8 +212,8 @@ function PersistentDrawerLeft() {
           </ListItem> */}
         </List>
         <Divider color="#d5cdc4" />
-        <List>
-          <ListItem>
+        <List className = "sideBarList" >
+          <ListItem className = "sideBarListItem">
             <Link to="/general">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>
@@ -224,7 +223,7 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <Link to="/DatedNews">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>
@@ -234,7 +233,7 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <div className="toFlex" onClick={showSubNav}>
               <div>
                 <ListItemButton>
@@ -256,8 +255,8 @@ function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <Divider color="#d5cdc4" />
-        <List>
-          <ListItem>
+        <List className = "sideBarList">
+          <ListItem className = "sideBarListItem">
             <Link to="/ContactUs">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>
@@ -267,7 +266,7 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem>
+          <ListItem className = "sideBarListItem">
             <Link to="AboutUs">
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#d5cdc4' }}>

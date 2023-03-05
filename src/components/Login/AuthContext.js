@@ -4,14 +4,15 @@ import { auth, db } from '../../firebase';
 
 const AuthContext = React.createContext();
 
-export function useAuth(){
+export function useAuth() {
     return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
-    
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // new state
+
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
         // .then(cred => {
@@ -22,33 +23,42 @@ export function AuthProvider({ children }) {
         // });
     }
 
-    function login(email, password){
+    function login(email, password) {
+        console.log(auth.signInWithEmailAndPassword(email, password));
         return auth.signInWithEmailAndPassword(email, password);
     }
 
-    function logout(){
+    function logout() {
         return auth.signOut();
+    }
+
+    function requireAuth(nextState, replace) {
+        if (!isLoggedIn) {
+            replace('/login'); // replace with your login page route
+        }
     }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
             setLoading(false);
+            setIsLoggedIn(!!user);
         })
-        return unsubscribe;      
+        return unsubscribe;
     }, [])
 
-    
+
 
     const value = {
         currentUser,
         signup,
         login,
-        logout
+        logout,
+        requireAuth
     }
-  return (
-    <AuthContext.Provider value = {value}>
-        {!loading && children}
-    </AuthContext.Provider>
-  )
+    return (
+        <AuthContext.Provider value={value}>
+            {!loading && children}
+        </AuthContext.Provider>
+    )
 }
