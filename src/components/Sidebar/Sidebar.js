@@ -224,7 +224,7 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem>
           <ListItem className = "sideBarListItem">
-            <Link to="/DatedNews">
+            <Link to="/datedNews">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <CalendarMonthIcon />

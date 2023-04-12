@@ -38,8 +38,6 @@
 
 .navbarOptions:hover {
     color: var(--color-white);
-    background: var(--color-bg);
-    border: 1 solid var(--color-bg-variant);
 }
 
 .navbarUserIcon{

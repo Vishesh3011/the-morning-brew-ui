@@ -17,6 +17,7 @@ import requests from './components/requests';
 
 import { AuthProvider, useAuth } from './components/Login/AuthContext';
 import { useEffect } from 'react';
+import DatedNews from './components/DatedNews/DatedNews';
 
 const routes = [
   { path: "/", category: requests.general1 },
@@ -31,6 +32,7 @@ const routes = [
   { path: "/health", category: requests.health },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <SignUp /> },
+  { path: "/datedNews", element: <DatedNews/>}
   // { path: "/savedNews", element: <SavedNews/> },
 ];
 
@@ -59,7 +61,6 @@ function App() {
 
   {/* {!currentUser } */}
   return (
-
       <AuthProvider>
       <div>
         <ResponsiveDrawer />
