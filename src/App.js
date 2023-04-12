@@ -61,7 +61,7 @@ function App() {
   return (
 
       <AuthProvider>
-      <div className="App">
+      <div>
         <ResponsiveDrawer />
         <Routes>
           {routes.map(({ path, category, element }) => (

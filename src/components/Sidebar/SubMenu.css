@@ -5,6 +5,11 @@
     font-family: 'Roboto';
 }
 
+.subBarLink:hover {
+    color: var(--color-primary);
+    cursor: 'pointer'
+}
+
 .subBarLabel{
     margin-left: 2rem;
 }
@@ -12,6 +17,8 @@
 .subBarLink{
     display: flex;
     flex-direction: row;
+    color: var(--color-primary-variant); 
+    transition: 'ease-out all 500ms'
 }
 
 .toFlexThis{

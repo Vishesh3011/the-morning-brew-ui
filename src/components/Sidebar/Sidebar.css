@@ -5,7 +5,7 @@
 .navbar{
     display: flex;
     gap: 1rem;
-    background: var(--color-bg-variant);
+    background: var(-color-bg-variant);
     position: sticky;
 }
 
@@ -41,11 +41,13 @@
 .navbarOptions {
     display: flex;
     justify-content: flex-start;
-    /* color: var(--color-light); */
-    /* transition: var(--transition); */
+    color: var(--color-primary);
+    transition: var(--transition);
     padding: .4rem;
     padding-top: 1.5rem;
     margin-right: 5rem;
+    /* margin-top: .5rem; */
+    margin-bottom: .5rem;
 }
 
 .navbarUserIcon{
@@ -56,10 +58,17 @@
     width: 45px;
 }
 
+.userAvatar {
+    margin-right: 2rem;
+    margin-left: .4rem;
+    /* margin-bottom: 2rem; */
+    /* margin-top: 2rem; */
+}
+
 .navbarOption{
-    margin-top: .8rem;
-    /* margin-left: .5rem; */
+    margin-top: 1rem;
     font-size: 18px;
+    color: var(--color-primary-vairant)
 }
 
 .navbarOptionsIcon{
@@ -69,19 +78,13 @@
 .subMenu {
     display: flex;
     flex-direction: column;
+    color: var(--color-primary-variant); 
+    transition: 'ease-out all 500ms'
 }
 
 .toFlex{
     display: flex;
     flex-direction: column;
-}
-
-.sideBarListItem{
-    transition: var(--transition);
-}
-
-.sideBarListItem:hover{
-    background: var(--color-bg);
 }
 
 

@@ -16,9 +16,7 @@
 }
 
 .newsCard:hover{
-    background: var(--color-bg);
-    border: 1px solid;
-    border-color: var(--color-primary);
+    cursor: pointer;
 }
 
 .newsImage{

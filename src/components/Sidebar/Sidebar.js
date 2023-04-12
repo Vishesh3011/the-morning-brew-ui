@@ -31,11 +31,12 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
-import logo from '../images/logo1.png';
+import logo from '../images/logo3.png';
 
 import { SubBarData } from './SubBarData';
 import './Sidebar.css';
 import SubMenu from './SubMenu';
+import Avatar from 'react-avatar';
 
 const drawerWidth = 300;
 
@@ -142,8 +143,8 @@ function PersistentDrawerLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: '#302b31',
-            color: '#d5cdc4',
+            backgroundColor: '#212121',
+            color: "#EEEEEE",
           },
           
         }}
@@ -151,11 +152,10 @@ function PersistentDrawerLeft() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader color='#d5cdc4'>
+        <DrawerHeader color='#B2B2B2'>
           <Link to={!currentUser && '/login'}>
             <div onClick={handleLogout} className='navbarOptionsSmall navbarOptions'>
-              {/* <div className='navbarOptionsSmall navbarOptions'> */}
-              <img alt="" className='navbarUserIcon' />
+              <Avatar name={`${currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar'/>
               <p className='navbarOption'>Hello, &nbsp;</p>
               <p className='navbarOption'>
                 {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}
@@ -163,15 +163,15 @@ function PersistentDrawerLeft() {
             </div>
           </Link>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#d5cdc4' }} /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#EEEEEE' }} /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider color="#d5cdc4" />
+        <Divider color="#B2B2B2" />
         <List>
           <ListItem className = "sideBarListItem">
             <Link to="/">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+            <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <HomeIcon />
                 </ListItemIcon>
                 <ListItemText>Home</ListItemText>
@@ -181,8 +181,8 @@ function PersistentDrawerLeft() {
           <ListItem className = "sideBarListItem">
             <Link to={!currentUser && '/login'}>
               <div onClick={handleLogout}>
-                <ListItemButton>
-                  <ListItemIcon sx={{ color: '#d5cdc4' }}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
                     <LoginIcon />
                   </ListItemIcon>
                   <ListItemText>{currentUser ? 'Log out' : 'Login'}</ListItemText>
@@ -192,8 +192,8 @@ function PersistentDrawerLeft() {
           </ListItem>
           <ListItem className = "sideBarListItem">
             <Link to="/SavedNews">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <BookmarkBorderIcon />
                 </ListItemIcon>
                 <ListItemText>Saved News</ListItemText>
@@ -203,7 +203,7 @@ function PersistentDrawerLeft() {
           {/* <ListItem>
             <Link to = "/Help">
               <ListItemButton>
-                <ListItemIcon sx={{color: '#d5cdc4'}}>
+                <ListItemIcon sx={{color: '#B2B2B2'}}>
                   <HelpOutlineIcon/>
                 </ListItemIcon>
                 <ListItemText>Help</ListItemText>
@@ -211,12 +211,12 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem> */}
         </List>
-        <Divider color="#d5cdc4" />
+        <Divider color="#B2B2B2" />
         <List className = "sideBarList" >
           <ListItem className = "sideBarListItem">
             <Link to="/general">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <FeedIcon />
                 </ListItemIcon>
                 <ListItemText>Latest</ListItemText>
@@ -225,8 +225,8 @@ function PersistentDrawerLeft() {
           </ListItem>
           <ListItem className = "sideBarListItem">
             <Link to="/DatedNews">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <CalendarMonthIcon />
                 </ListItemIcon>
                 <ListItemText>Top News by Date</ListItemText>
@@ -236,14 +236,14 @@ function PersistentDrawerLeft() {
           <ListItem className = "sideBarListItem">
             <div className="toFlex" onClick={showSubNav}>
               <div>
-                <ListItemButton>
-                  <ListItemIcon sx={{ color: '#d5cdc4' }}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
                     <CategoryIcon />
                   </ListItemIcon>
                   <ListItemText>
                     Categories
                   </ListItemText>
-                  <ListItemIcon sx={{ color: '#d5cdc4' }}>{!subNav ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}</ListItemIcon>
+                  <ListItemIcon sx={{ color: '#B2B2B2' }}>{!subNav ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}</ListItemIcon>
                 </ListItemButton>
               </div>
               <div>
@@ -254,12 +254,12 @@ function PersistentDrawerLeft() {
             </div>
           </ListItem>
         </List>
-        <Divider color="#d5cdc4" />
+        <Divider color="#B2B2B2" />
         <List className = "sideBarList">
           <ListItem className = "sideBarListItem">
             <Link to="/ContactUs">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+            <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <ContactPageIcon />
                 </ListItemIcon>
                 <ListItemText>Contact Us</ListItemText>
@@ -268,8 +268,8 @@ function PersistentDrawerLeft() {
           </ListItem>
           <ListItem className = "sideBarListItem">
             <Link to="AboutUs">
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#d5cdc4' }}>
+            <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <InfoIcon />
                 </ListItemIcon>
                 <ListItemText>About Our Team</ListItemText>

@@ -14,11 +14,6 @@
     transition: var(--transition);
 }
 
-.signup:hover{
-    background: var(--color-bg);
-    border: 1px solid var(--color-white);
-}
-
 .signupCard{
     display: flex;
     flex-direction: column;
