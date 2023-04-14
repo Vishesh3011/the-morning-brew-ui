@@ -16,7 +16,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LoginIcon from '@mui/icons-material/Login';
@@ -37,6 +36,8 @@ import { SubBarData } from './SubBarData';
 import './Sidebar.css';
 import SubMenu from './SubMenu';
 import Avatar from 'react-avatar';
+import { getNewsBySearch } from '../../apis/NewsCategory';
+import NewsPage from '../Home/NewsPage';
 
 const drawerWidth = 300;
 
@@ -105,6 +106,8 @@ function PersistentDrawerLeft() {
       setOpen(false);
     }
   },[window.innerWidth <= 850])
+
+
   return (
     <Box sx={{ display: 'flex' }} className="Sidebar">
       {/* <CssBaseline /> */}
@@ -123,14 +126,6 @@ function PersistentDrawerLeft() {
             <Link to="/">
               <img src={logo} alt="" className='navbarLogoImage' />
             </Link>
-          </div>
-          <div className='navbarSearch'>
-            <div className='navbarSearchDiv'>
-              <input type='text' name='search' className='navbarSearchBar' />
-            </div>
-            <div>
-              <SearchIcon className='navbarOptionsIcon' />
-            </div>
           </div>
         </Toolbar>
       </AppBar>
@@ -214,7 +209,7 @@ function PersistentDrawerLeft() {
         <Divider color="#B2B2B2" />
         <List className = "sideBarList" >
           <ListItem className = "sideBarListItem">
-            <Link to="/general">
+            <Link to="news/general">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <FeedIcon />

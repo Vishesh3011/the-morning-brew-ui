@@ -18,26 +18,6 @@
     /* margin-left: 1rem; */
 }
 
-.navbarSearch{
-    display: flex;
-    padding: .4rem;
-    margin-left: auto;
-}
-
-.navbarSearchDiv{
-    width: 55rem;
-    height: 2rem;
-    padding-top: 0.8rem;
-}
-
-.navbarSearchBar{
-    height: 2rem;
-    width: 100%;
-    border-radius: 2rem;
-    padding-left: 1rem;
-    font-size: 18px;
-}
-
 .navbarOptions {
     display: flex;
     justify-content: flex-start;

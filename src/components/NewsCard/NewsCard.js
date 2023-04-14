@@ -27,9 +27,6 @@ function NewsCard({ title, description, image, link, datePublished, author, sour
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-  
-  
-
   return (
     <a href = {link} target = '_blank' className='newsCardLink'>
       <div className='newsCard'>

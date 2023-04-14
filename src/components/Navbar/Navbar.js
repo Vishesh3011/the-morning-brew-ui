@@ -37,14 +37,14 @@ function Navbar() {
           <img src = {logo} alt = "" className='navbarLogoImage'/>
         </Link>
       </div>
-      <div className='navbarSearch'>
+      {/* <div className='navbarSearch'>
         <div className='navbarSearchDiv'>
           <input type='text' name = 'search' className='navbarSearchBar'/>
         </div>
         <div>
           <SearchIcon className='navbarOptionsIcon'/>
         </div>
-      </div>
+      </div> */}
       <Link to = {!currentUser && '/login'}>
         <div onClick={handleLogout} className='navbarOptionsSmall navbarOptions'>
           <img alt ="" className='navbarUserIcon'/>

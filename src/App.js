@@ -7,13 +7,12 @@ import Login from './components/Login/Login';
 import ResponsiveDrawer from './components/Sidebar/Sidebar';
 
 import { AuthProvider, useAuth } from './components/Login/AuthContext';
-import { useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import DatedNews from './components/DatedNews/DatedNews';
 import NewsPage from './components/Home/NewsPage';
 
 function App() {
   const context = useAuth();
-
   const navigate = useNavigate()
   
 
@@ -44,7 +43,7 @@ function App() {
           <Route path = "/signup" element = {<SignUp/>}/>
           <Route path = "/datedNews" element = {<DatedNews/>}/>
           <Route path = "/news/:category" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
-
+          {/* <Route path = "" */}
         </Routes>
       </div>
       </AuthProvider>
