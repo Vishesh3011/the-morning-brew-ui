@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import './Home.css';
-
-import axios from '../axios';
+import './NewsPage.css';
 
 import NewsCard from '../NewsCard/NewsCard';
+import { useParams } from 'react-router-dom';
+import { getNewsByCategory } from '../../apis/NewsCategory';
 
-function Home({ category }) {
+function NewsPage({ type, country }) {
   const [news, setNews] = useState([]);
+  const category = useParams()
 
   useEffect(() => {
     async function newsArticles() {
-      const request = await axios.get(category);
-      // console.table(request.data.articles);
-      // console.table(request.data.articles.source);
-      setNews(request.data.articles);
+      const request = await getNewsByCategory({ type, country, category: category.category});
       console.log(request.data);
-      // setNews(request.data.data);
-      // return request;
+      setNews(request.data.articles);
     }
     newsArticles();
   }, [category]);
@@ -37,4 +34,4 @@ function Home({ category }) {
   )
 }
 
-export default Home
+export default NewsPage

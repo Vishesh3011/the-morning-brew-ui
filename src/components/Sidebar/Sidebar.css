@@ -5,7 +5,7 @@
 .navbar{
     display: flex;
     gap: 1rem;
-    background: var(-color-bg-variant);
+    background-color: var(--color-bg-variant);
     position: sticky;
 }
 

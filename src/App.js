@@ -1,41 +1,15 @@
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer';
-import SecondNavbar from './components/SecondNavbar/SecondNavbar';
 import SignUp from './components/Login/Signup';
 import Login from './components/Login/Login';
-import SavedNews from './components/SavedNews/SavedNews';
 import ResponsiveDrawer from './components/Sidebar/Sidebar';
-
-// import Profile from './components/Profile/Profile';
-
-import requests from './components/requests';
 
 import { AuthProvider, useAuth } from './components/Login/AuthContext';
 import { useEffect } from 'react';
 import DatedNews from './components/DatedNews/DatedNews';
-
-const routes = [
-  { path: "/", category: requests.general1 },
-  { path: "/sports", category: requests.sports },
-  { path: "/general", category: requests.general2 },
-  { path: "/business", category: requests.business },
-  { path: "/entertainment", category: requests.entertainment },
-  { path: "/science", category: requests.science },
-  { path: "/lifestyle", category: requests.lifestyle },
-  { path: "/india", category: requests.india },
-  { path: "/world", category: requests.world },
-  { path: "/health", category: requests.health },
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
-  { path: "/datedNews", element: <DatedNews/>}
-  // { path: "/savedNews", element: <SavedNews/> },
-];
-
+import NewsPage from './components/Home/NewsPage';
 
 function App() {
   const context = useAuth();
@@ -65,9 +39,12 @@ function App() {
       <div>
         <ResponsiveDrawer />
         <Routes>
-          {routes.map(({ path, category, element }) => (
-            <Route key={path} path={path} element={element || <Home category={category} />} />
-          ))}
+          <Route path = "/" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
+          <Route path = "/login" element = {<Login/>}/>
+          <Route path = "/signup" element = {<SignUp/>}/>
+          <Route path = "/datedNews" element = {<DatedNews/>}/>
+          <Route path = "/news/:category" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
+
         </Routes>
       </div>
       </AuthProvider>

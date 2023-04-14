@@ -16,22 +16,22 @@ import PublicIcon from '@mui/icons-material/Public';
 export const SubBarData = [
     {
         title: 'Business',
-        path: '/business',
+        path: 'news/business',
         icon: <BusinessIcon/>
     },
     {
         title: 'Entertainment',
-        path: '/entertainment',
+        path: 'news/entertainment',
         icon: <ConfirmationNumberIcon/>
     },
     {
         title: 'Sports',
-        path: '/sports',
+        path: 'news/sports',
         icon: <SportsIcon/>
     },
     {
         title: 'Science',
-        path: '/science',
+        path: 'news/science',
         icon: <ScienceIcon/>
     },
     // {
@@ -41,12 +41,12 @@ export const SubBarData = [
     // },
     {
         title: 'India Today',
-        path: '/india',
+        path: 'news/india',
         icon: <FlagIcon/>
     },
     {
         title: 'Health',
-        path: '/health',
+        path: 'news/health',
         icon: <BloodtypeIcon/>
     }
 ]
