@@ -24,7 +24,6 @@ function NewsPage({ type, country, q }) {
 
   const handleSearchBarChange = async (event) => {
     const q = event.target.value;
-    console.log(q);
     setSearch(q);
   }
 

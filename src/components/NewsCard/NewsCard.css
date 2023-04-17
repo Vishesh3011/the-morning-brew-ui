@@ -11,12 +11,14 @@
     padding-top: 1rem;
     display: flex;
     flex-direction: column;
-    transition: var(--transition) border-color 0.8s;
+    transition: var(--transition);
     cursor: default;
 }
 
 .newsCard:hover{
     cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6);
+    background-color: var(--color-bg);
 }
 
 .newsImage{

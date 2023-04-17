@@ -251,7 +251,7 @@ function PersistentDrawerLeft() {
         </List>
         <Divider color="#B2B2B2" />
         <List className = "sideBarList">
-          <ListItem className = "sideBarListItem">
+          {/* <ListItem className = "sideBarListItem">
             <Link to="/ContactUs">
             <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
@@ -260,9 +260,9 @@ function PersistentDrawerLeft() {
                 <ListItemText>Contact Us</ListItemText>
               </ListItemButton>
             </Link>
-          </ListItem>
+          </ListItem> */}
           <ListItem className = "sideBarListItem">
-            <Link to="AboutUs">
+            <Link to="/aboutUs">
             <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <InfoIcon />

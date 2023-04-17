@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from './components/Login/AuthContext';
 import { useContext, useEffect, useRef } from 'react';
 import DatedNews from './components/DatedNews/DatedNews';
 import NewsPage from './components/Home/NewsPage';
+import AboutUs from './components/AboutUs/AboutUs';
 
 function App() {
   const context = useAuth();
@@ -43,6 +44,7 @@ function App() {
           <Route path = "/signup" element = {<SignUp/>}/>
           <Route path = "/datedNews" element = {<DatedNews/>}/>
           <Route path = "/news/:category" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
+          <Route path = "/aboutUs" element = {<AboutUs/>}/>
           {/* <Route path = "" */}
         </Routes>
       </div>

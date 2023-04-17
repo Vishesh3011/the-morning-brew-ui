@@ -36,6 +36,7 @@
 
 .navbarOptionsIcon{
     margin-top: 1.4rem;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1024px){

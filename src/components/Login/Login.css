@@ -12,6 +12,10 @@
     transition: var(--transition);
 }
 
+.login:hover{
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6);
+    background-color: var(--color-bg);
+}
 
 .signupCard{
     display: flex;
