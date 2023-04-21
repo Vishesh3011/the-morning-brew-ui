@@ -22,13 +22,6 @@ function App() {
       console.log(context,"context");
       navigate("/login")
     }
-
-    // requireAuth()
-    // if (!currentUser) {
-    //   // Redirect to the login route
-    //   // return <Router><Navigate to="/login" /></Router>;
-    // }
-
   }, [])
 
   
