@@ -11,24 +11,24 @@ import { useContext, useEffect, useRef } from 'react';
 import DatedNews from './components/DatedNews/DatedNews';
 import NewsPage from './components/Home/NewsPage';
 import AboutUs from './components/AboutUs/AboutUs';
+import { getLocalStorage } from './util/LocalStorage';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const context = useAuth();
+  // const context = useAuth();
   const navigate = useNavigate()
-  
+  const user = useSelector(state => state.user.user)
 
   useEffect(() => {
-    if(context == undefined ) {
-      console.log(context,"context");
-      navigate("/login")
-    }
+    console.log(user)
+    user !== null ? navigate("/") : navigate("/login")
   }, [])
 
   
 
   {/* {!currentUser } */}
   return (
-      <AuthProvider>
+      // <AuthProvider>
       <div>
         <ResponsiveDrawer />
         <Routes>
@@ -41,7 +41,7 @@ function App() {
           {/* <Route path = "" */}
         </Routes>
       </div>
-      </AuthProvider>
+      // </AuthProvider>
   );
 }
 

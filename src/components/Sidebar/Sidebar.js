@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { Link, useNavigate, NavLink } from 'react-router-dom';
-import { useAuth } from '../Login/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -20,13 +19,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LoginIcon from '@mui/icons-material/Login';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import FeedIcon from '@mui/icons-material/Feed';
 import CategoryIcon from '@mui/icons-material/Category';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import InfoIcon from '@mui/icons-material/Info';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
@@ -35,9 +32,9 @@ import logo from '../images/logo3.png';
 import { SubBarData } from './SubBarData';
 import './Sidebar.css';
 import SubMenu from './SubMenu';
-import Avatar from 'react-avatar';
-import { getNewsBySearch } from '../../apis/NewsCategory';
-import NewsPage from '../Home/NewsPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Feature/userSlice';
+import { getLocalStorage } from '../../util/LocalStorage';
 
 const drawerWidth = 300;
 
@@ -83,20 +80,16 @@ function PersistentDrawerLeft() {
   };
 
   const [error, setError] = useState('');
-  const { currentUser, logout } = useAuth();
+  // const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+  const user = useSelector(state => state.user.user)
+  const dispatch = useDispatch()
 
-  async function handleLogout() {
-    setError('');
-    try {
-      if (currentUser) {
-        await logout();
-        navigate('/');
-      }
-    } catch {
-      setError('Failed to log out');
-    }
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/login')
   }
+
   const [subNav, setSubNav] = useState(false);
 
   const showSubNav = () => setSubNav(!subNav);
@@ -148,12 +141,12 @@ function PersistentDrawerLeft() {
         open={open}
       >
         <DrawerHeader color='#B2B2B2'>
-          <Link to={!currentUser && '/login'}>
-            <div onClick={handleLogout} className='navbarOptionsSmall navbarOptions'>
-              <Avatar name={`${currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar'/>
+          <Link to={'/login'}>
+            <div onClick className='navbarOptionsSmall navbarOptions'>
+              {/* <Avatar name={`${currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar'/> */}
               <p className='navbarOption'>Hello, &nbsp;</p>
               <p className='navbarOption'>
-                {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}
+                {/* {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'} */}
               </p>
             </div>
           </Link>
@@ -174,13 +167,13 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem>
           <ListItem className = "sideBarListItem">
-            <Link to={!currentUser && '/login'}>
+            <Link to={'/login'}>
               <div onClick={handleLogout}>
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
                   <ListItemIcon sx={{ color: '#B2B2B2' }}>
                     <LoginIcon />
                   </ListItemIcon>
-                  <ListItemText>{currentUser ? 'Log out' : 'Login'}</ListItemText>
+                  <ListItemText>{ user !== null ? "Logout" : "Login" }</ListItemText>
                 </ListItemButton>
               </div>
             </Link>

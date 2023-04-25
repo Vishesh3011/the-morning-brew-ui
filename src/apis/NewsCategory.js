@@ -43,22 +43,6 @@ export const getNewsByCategory = async (params) => {
     return response;
 };
 
-// export const getNewsBySearch = async (params) => {
-//     const { type, q, lang, max } = params
-
-//     const query = {};
-
-//     query.lang = "en"
-    
-//     query.type = "search"
-
-//     query.q = q
-
-//     if(max)
-//         query.max = max;
-
-//     const response = await request.get(type, { params: { ...query, q, apikey: API_KEY } });
-// }
 
 
 

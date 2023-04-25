@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from 'react';
 
 import './NewsPage.css';
+import './Loader.css'
 
 import NewsCard from '../NewsCard/NewsCard';
 import { useParams } from 'react-router-dom';
-import { getNewsByCategory } from '../../apis/NewsCategory';
+// import { getNewsByCategory } from '../../apis/NewsCategory';
 
 import SearchIcon from '@mui/icons-material/Search';
+import { getNewsByCategory } from '../../Feature/newsSlice';
+
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { NewsData } from '../../Feature/newsSlice';
+import { SyncLoader } from 'react-spinners';
 
 function NewsPage({ type, country, q }) {
-  const [news, setNews] = useState([]);
+  const [newsData, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const [reload, setReload] = useState(false);
+  
   const category = useParams()
+  const dispatch = useDispatch();
+
+
+  const { news, isLoading } = useSelector(NewsData);
+
   useEffect(() => {
-    async function newsArticles() {
-      const request = await getNewsByCategory({ type, country, category: category.category, q:search });
-      console.log(request.data);
-      setNews(request.data.articles);
+    async function getNewsArticles() {
+      dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
+      console.log("here", news)
+      setNews(news);
     }
-    newsArticles();
-  }, [category, reload]);
+    
+     getNewsArticles();
+  }, [category, reload, news]);
 
   const handleSearchBarChange = async (event) => {
     const q = event.target.value;
@@ -41,7 +55,16 @@ function NewsPage({ type, country, q }) {
         </div>
       </div>
       <section className='news' id="home">
-        {news.map((ns, index) => (
+        {isLoading ? 
+        <div className='loader book'>
+          <figure class="page"></figure>
+          <figure class="page"></figure>
+          <figure class="page"></figure>
+        </div>
+        // <div className='loader'>
+        //   <SyncLoader color="#fffff"/>
+        // </div> 
+        :  news.map((ns, index) => (
           // ns.urlToImage &&
           <NewsCard className='homeNewsCard' key={index} title={ns.title} description={ns.description} image={ns.image} link={ns.url} datePublished={ns.publishedAt} author={ns.author} source={ns.source.name} />
         ))}

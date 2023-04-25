@@ -6,22 +6,9 @@ import './NewsCard.css'
 
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-import { useStateValue } from '../stateProvider';
-
 function NewsCard({ title, description, image, link, datePublished, author, source }) {
-    const [{ savedNews }, dispatch] = useStateValue();
+    // const [{ savedNews }, dispatch] = useStateValue();
     // console.log(savedNews);
-    const addToSaved = () => {
-      dispatch({
-        type: 'ADD_TO_SAVED',
-        item: {
-          title: title,
-          description: description,
-          image: image,
-          link: link,
-        },
-      })
-    }
   
   function truncate(str, n){
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -38,7 +25,7 @@ function NewsCard({ title, description, image, link, datePublished, author, sour
           {source ? <h4 className="source">Source: {source}</h4> : ''}
           <div className='newsCardLower'>
             <p className='readMore'>Tap to Read more</p>
-            <a href="javascript:void(0);" className='savedIcon' onClick={addToSaved}><BookmarkBorderIcon/></a>
+            <a href="javascript:void(0);" className='savedIcon'><BookmarkBorderIcon/></a>
           </div>
       </div>
     </a>
