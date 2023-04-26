@@ -9,6 +9,7 @@ import './Login.css';
 import { loginUser } from '../../Feature/userSlice';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 
 
@@ -45,7 +46,7 @@ function Login() {
     e.preventDefault();
         console.log(email, password);
         dispatch(loginUser({email, password}));
-        Swal.fire("Welcome back!", "Login successful.", "success");
+        swal("Welcome back!", "Login successful.", "success");
         navigate("/")
     }
 

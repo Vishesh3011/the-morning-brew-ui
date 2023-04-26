@@ -68,13 +68,6 @@
     flex-direction: column;
 }
 
-.loader {
-    margin-left: 20rem;
-    font-size: 20rem;
-}
-
-
-
 @media screen and (max-width: 1024px){
     .navbar{
         gap: 0rem

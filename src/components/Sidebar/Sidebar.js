@@ -26,6 +26,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import logo from '../images/logo3.png';
 
@@ -35,6 +36,9 @@ import SubMenu from './SubMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Feature/userSlice';
 import { getLocalStorage } from '../../util/LocalStorage';
+import Avatar from 'react-avatar';
+import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 const drawerWidth = 300;
 
@@ -69,7 +73,7 @@ function PersistentDrawerLeft() {
 
   let [open, setOpen] = React.useState(true);
 
-  
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -83,22 +87,38 @@ function PersistentDrawerLeft() {
   // const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const user = useSelector(state => state.user.user)
+  console.log(user)
   const dispatch = useDispatch()
 
   const handleLogout = () => {
-    dispatch(logout())
-    navigate('/login')
+    swal({
+      title: "Are you sure you want to logout?",
+      text: "",
+      dangerMode: true
+    }).then(async (willLogout) => {
+      if (willLogout) {
+        try {
+          await dispatch(logout())
+          swal("Logged Out Successfully!", "", "success");
+          navigate('/login')
+        }
+        catch (error) {
+          setError(error.message)
+          swal("Error Logging Out!", "", "error");
+        }
+      }
+    });
   }
 
   const [subNav, setSubNav] = useState(false);
 
   const showSubNav = () => setSubNav(!subNav);
   useEffect(() => {
-    if(window.innerWidth <= 850){
+    if (window.innerWidth <= 850) {
       console.log("widht");
       setOpen(false);
     }
-  },[window.innerWidth <= 850])
+  }, [window.innerWidth <= 850])
 
 
   return (
@@ -126,7 +146,7 @@ function PersistentDrawerLeft() {
       <Drawer
         sx={{
           width: drawerWidth,
-           
+
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
@@ -134,7 +154,7 @@ function PersistentDrawerLeft() {
             backgroundColor: '#212121',
             color: "#EEEEEE",
           },
-          
+
         }}
         variant="persistent"
         anchor="left"
@@ -143,10 +163,10 @@ function PersistentDrawerLeft() {
         <DrawerHeader color='#B2B2B2'>
           <Link to={'/login'}>
             <div onClick className='navbarOptionsSmall navbarOptions'>
-              {/* <Avatar name={`${currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar'/> */}
-              <p className='navbarOption'>Hello, &nbsp;</p>
+              <Avatar name={`${user !== null ? user.email.substr(0, user.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar' />
+              <p className='navbarOption'>Hello, &nbsp; &nbsp;</p>
               <p className='navbarOption'>
-                {/* {currentUser ? currentUser.email.substr(0, currentUser.email.indexOf('@')) : 'Guest'} */}
+                {user !== null ? user.email.substr(0, user.email.indexOf('@')) : 'Guest'}
               </p>
             </div>
           </Link>
@@ -156,9 +176,9 @@ function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider color="#B2B2B2" />
         <List>
-          <ListItem className = "sideBarListItem">
+          <ListItem className="sideBarListItem">
             <Link to="/">
-            <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <HomeIcon />
                 </ListItemIcon>
@@ -166,21 +186,31 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem className = "sideBarListItem">
-            <Link to={'/login'}>
-              <div onClick={handleLogout}>
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+          <ListItem className="sideBarListItem">
+            {user === null ? 
+            <Link to = "/login">
+              <div>
+                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                   <ListItemIcon sx={{ color: '#B2B2B2' }}>
                     <LoginIcon />
                   </ListItemIcon>
-                  <ListItemText>{ user !== null ? "Logout" : "Login" }</ListItemText>
+                  <ListItemText>Login</ListItemText>
                 </ListItemButton>
               </div>
-            </Link>
+            </Link> :
+              <div onClick={handleLogout}>
+                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
+                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  <ListItemText>Logout</ListItemText>
+                </ListItemButton>
+              </div>
+              }
           </ListItem>
-          <ListItem className = "sideBarListItem">
+          <ListItem className="sideBarListItem">
             <Link to="/SavedNews">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <BookmarkBorderIcon />
                 </ListItemIcon>
@@ -200,10 +230,10 @@ function PersistentDrawerLeft() {
           </ListItem> */}
         </List>
         <Divider color="#B2B2B2" />
-        <List className = "sideBarList" >
-          <ListItem className = "sideBarListItem">
+        <List className="sideBarList" >
+          <ListItem className="sideBarListItem">
             <Link to="news/general">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <FeedIcon />
                 </ListItemIcon>
@@ -211,9 +241,9 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem className = "sideBarListItem">
+          <ListItem className="sideBarListItem">
             <Link to="/datedNews">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <CalendarMonthIcon />
                 </ListItemIcon>
@@ -221,10 +251,10 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem className = "sideBarListItem">
+          <ListItem className="sideBarListItem">
             <div className="toFlex" onClick={showSubNav}>
               <div>
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                   <ListItemIcon sx={{ color: '#B2B2B2' }}>
                     <CategoryIcon />
                   </ListItemIcon>
@@ -243,7 +273,7 @@ function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <Divider color="#B2B2B2" />
-        <List className = "sideBarList">
+        <List className="sideBarList">
           {/* <ListItem className = "sideBarListItem">
             <Link to="/ContactUs">
             <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
@@ -254,9 +284,9 @@ function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem> */}
-          <ListItem className = "sideBarListItem">
+          <ListItem className="sideBarListItem">
             <Link to="/aboutUs">
-            <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': {color: '#EEEEEE', cursor: 'pointer'}}}>
+              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <InfoIcon />
                 </ListItemIcon>

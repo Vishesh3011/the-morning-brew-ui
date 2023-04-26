@@ -41,6 +41,16 @@
     cursor: pointer;
 }
 
+.loader {
+    /* margin-left: 30rem; */
+    grid-column: span 2;
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: center;
+    margin-top: 11rem;
+    /* font-size: 20rem; */
+}
+
 @media screen and (max-width: 1024px){
     .news{
         grid-template-columns: 1fr 1fr;

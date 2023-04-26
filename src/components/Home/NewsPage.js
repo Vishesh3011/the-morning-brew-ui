@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import './NewsPage.css';
-import './Loader.css'
+// import './Loader.css'
 
 import NewsCard from '../NewsCard/NewsCard';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ import { getNewsByCategory } from '../../Feature/newsSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { NewsData } from '../../Feature/newsSlice';
-import { SyncLoader } from 'react-spinners';
+import { CircleLoader, PropagateLoader, SyncLoader } from 'react-spinners';
 
 function NewsPage({ type, country, q }) {
   const [newsData, setNews] = useState([]);
@@ -56,14 +56,9 @@ function NewsPage({ type, country, q }) {
       </div>
       <section className='news' id="home">
         {isLoading ? 
-        <div className='loader book'>
-          <figure class="page"></figure>
-          <figure class="page"></figure>
-          <figure class="page"></figure>
-        </div>
-        // <div className='loader'>
-        //   <SyncLoader color="#fffff"/>
-        // </div> 
+        <div className='loader'>
+          <PropagateLoader size="30" color="#b1aeae"/>
+        </div> 
         :  news.map((ns, index) => (
           // ns.urlToImage &&
           <NewsCard className='homeNewsCard' key={index} title={ns.title} description={ns.description} image={ns.image} link={ns.url} datePublished={ns.publishedAt} author={ns.author} source={ns.source.name} />
