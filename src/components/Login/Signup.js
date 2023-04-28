@@ -11,7 +11,7 @@ function SignUp() {
     const navigate = useNavigate();
 
     const [ email, setEmail ] = useState("")
-    const [ userName, setUserName ] = useState("")
+    const [ username, setUserName ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ confPassword, setConfirmPassword ] = useState("")
 
@@ -23,8 +23,8 @@ function SignUp() {
             Swal.fire("Sign-up failed.", "Passwords do not match!", "error");
             return
         }else{
-            console.log(email, userName, password, confPassword)
-            dispatch(registerUser({email, userName, password, confPassword}))
+            // console.log(email, username, password, confPassword)
+            dispatch(registerUser({email, username, password}))
             Swal.fire("Welcome to The Morning Brew!", "Sign-up successful. You may now login.", "success");
             navigate("/login")
         }

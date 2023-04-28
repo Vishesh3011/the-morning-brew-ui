@@ -14,6 +14,10 @@ function NewsCard({ title, description, image, link, datePublished, author, sour
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
+  const handleSaveNews = async () => {
+    // const response = await 
+  }
+
   return (
     <a href = {link} target = '_blank' className='newsCardLink'>
       <div className='newsCard'>
@@ -25,7 +29,7 @@ function NewsCard({ title, description, image, link, datePublished, author, sour
           {source ? <h4 className="source">Source: {source}</h4> : ''}
           <div className='newsCardLower'>
             <p className='readMore'>Tap to Read more</p>
-            <a href="javascript:void(0);" className='savedIcon'><BookmarkBorderIcon/></a>
+            <a href="javascript:void(0);" className='savedIcon' onClick={() => handleSaveNews()}><BookmarkBorderIcon/></a>
           </div>
       </div>
     </a>

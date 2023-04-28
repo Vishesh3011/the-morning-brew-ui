@@ -7,19 +7,21 @@ const request = axios.create({
     baseURL: "",
 })
 
-const requestREST = axios.create({
-    baseURL: "https://localhost:5001/api/v1/users",
+const requestClient = axios.create({
+    baseURL: "http://localhost:9001/users",
 })
 
 export const registerUser = createAsyncThunk("register", async (values) => {
-    const { email, password } = values;
+    const { email, username, password } = values;
     try {
         const responseAuth = await firebase.auth().createUserWithEmailAndPassword(email, password)
-        const responseAuthUser = responseAuth.user;
-        // const valuesWithUserId = { ...values, userId: responseAuthUser.uid };
-        // const user = await requestREST.post("/", valuesWithUserId)
-        // console.log(user);
-        return responseAuthUser;
+        const responseAuthUser = responseAuth.user.multiFactor.user;
+        // console.log(responseAuthUser)
+        const valuesToBePassed = { userId: responseAuthUser.uid, userName: username, email: email };
+        console.log(valuesToBePassed)
+        const user = await requestClient.post("", valuesToBePassed)
+        console.log(user);
+        return user.data;
     } catch (err) {
         console.log(err)
     }
@@ -30,9 +32,8 @@ export const loginUser = createAsyncThunk("login", async (values) => {
     try {
         const responseAuth = await firebase.auth().signInWithEmailAndPassword(email, password)
         const responseAuthUser = responseAuth.user;
-        // const user = await requestREST.get(`/${responseAuthUser.uid}`);
-        // console.log(user);
-        return responseAuthUser;
+        const user = await requestClient.get(`/${responseAuthUser.uid}`);
+        return user.data;
     } catch (err) {
         console.log(err)
     }
@@ -66,12 +67,12 @@ export const userSlice = createSlice({
         builder.addCase(registerUser.pending, (state) => {
             state.isLoading = true;
         })
-        builder.addCase(registerUser.fulfilled, (state, { payload: { error, msg } }) => {
+        builder.addCase(registerUser.fulfilled, (state, action) => {
             state.isLoading = false;
-            if (error) {
-                state.error = error
+            if (state.error) {
+                state.error = action.payload
             } else {
-                state.msg = msg
+                state.msg = action.payload
             }
         })
         builder.addCase(registerUser.rejected, (state) => {
@@ -88,14 +89,9 @@ export const userSlice = createSlice({
                 state.error = action.payload;
             }
             else {
-                console.log(action.payload.multiFactor.user)
-                // state.msg = action.payload
-                state.user = action.payload.multiFactor.user
+                state.user = action.payload
                 state.token = action.payload
-                // console.log(action.payload)
-                // localStorage.setItem("msg", action.payload)
-                setLocalStorage("user", action.payload.multiFactor.user)
-                // localStorage.setItem("token", action.payload)
+                setLocalStorage("user", action.payload)
             }
         })
         builder.addCase(loginUser.rejected, (state) => {
@@ -106,7 +102,5 @@ export const userSlice = createSlice({
 })
 
 export const { addToken, addUser, logout } = userSlice.actions;
-
-export const UserDataById = (state) => (id) => state.user.users.find((user) => user.id === Number(id));
 
 export default userSlice.reducer

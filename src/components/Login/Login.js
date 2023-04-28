@@ -14,27 +14,6 @@ import swal from 'sweetalert';
 
 
 function Login() {
-    // const emailRef = useRef();
-    // const passRef = useRef();
-    // const { login } = useAuth();
-    // const [error, setError] = useState('');
-    // const [loading, setLoading] = useState(false);
-    // const navigate = useNavigate();
-
-    // async function handleSubmit(e){
-    //     e.preventDefault();
-
-    //     try {
-    //         setError('');
-    //         setLoading(true);
-    //         await login(emailRef.current.value, passRef.current.value);   
-    //         navigate('/');
-    //     }catch{
-    //         setError('Failed to login. Please try again.');
-    //     }
-    //     setLoading(false);
-    // }
-
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 

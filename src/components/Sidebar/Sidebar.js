@@ -87,7 +87,7 @@ function PersistentDrawerLeft() {
   // const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const user = useSelector(state => state.user.user)
-  console.log(user)
+  console.log("zzzzzzz", user)
   const dispatch = useDispatch()
 
   const handleLogout = () => {
@@ -166,7 +166,7 @@ function PersistentDrawerLeft() {
               <Avatar name={`${user !== null ? user.email.substr(0, user.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar' />
               <p className='navbarOption'>Hello, &nbsp; &nbsp;</p>
               <p className='navbarOption'>
-                {user !== null ? user.email.substr(0, user.email.indexOf('@')) : 'Guest'}
+                {user !== null ? user.userName : 'Guest'}
               </p>
             </div>
           </Link>
