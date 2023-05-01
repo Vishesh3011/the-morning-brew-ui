@@ -1,0 +1,96 @@
+[
+  {
+    title: 'NASA’s 45-year-old Voyager 2 probe gets new lease of life at edge of solar system',
+    description: 'The Voyager 2 spacecraft, which is now travelling in interstellar space, has gotten a new lease of life after mission engineers developed a new plan to keep its instruments running for longer.',
+    content: 'The Voyager 2 spacecraft was launched in 1977 and it is now more than 20 billion kilometres away from Earth. Now, NASA’s Jet Propulsion Laboratory (JPL) says that it plans to keep the spacecraft’s science instruments turned on for a few years longer ... [2056 chars]',
+    url: 'https://indianexpress.com/article/technology/science/nasa-jpl-voyager-2-spacecraft-8580836/',
+    image: 'https://images.indianexpress.com/2023/04/Voyager-2-power-saving-20230428.jpg',
+    publishedAt: '2023-04-28T08:26:24Z',
+    source: { name: 'The Indian Express', url: 'https://indianexpress.com' }
+  },
+  {
+    title: 'Video showing Vladimir Putin rushing to Kremlin at midnight sparks speculation',
+    description: "Vladimir Putin: An adviser to Ukraine's minister of internal affairs shared a 5-second clip showing the Russian President being rushed to the Kremlin. | World News",
+    content: "Russian President Vladimir Putin was taken to the Kremlin at midnight, sparking a wave of conspiracy theories. Claims spread on social media that Turkey's President Recep Tayyip Erdogan suffered a heart attack after meeting with a Russian official an... [1218 chars]",
+    url: 'https://www.hindustantimes.com/world-news/vladimir-putin-news-video-showing-vladimir-putin-rushing-to-kremlin-at-midnight-sparks-speculation-101682662564422.html',
+    image: 'https://www.hindustantimes.com/ht-img/img/2023/04/28/1600x900/RUSSIA-PUTIN--1_1682607159725_1682668933101.JPG',
+    publishedAt: '2023-04-28T08:04:34Z',
+    source: { name: 'Hindustan Times', url: 'https://www.hindustantimes.com' }
+  },
+  {
+    title: 'Supreme Court Asks Questions To UP Police',
+    description: 'The Supreme Court on Friday sought a "comprehensive affidavit" from the Uttar Pradesh government on the steps taken to enquire into the killings of gangster-politician Atique Ahmed and his brother...',
+    content: 'The Supreme Court on Friday sought a "comprehensive affidavit" from the Uttar Pradesh government on the steps taken to enquire into the killings of gangster-politician Atique Ahmed and his brother Ashraf Ahmed which took place on April 15 at Prayagra... [7243 chars]',
+    url: 'https://www.livelaw.in/top-stories/atiqu-ahmad-killing-supreme-court-sc-directs-up-govt-to-submit-status-report-227420',
+    image: 'https://www.livelaw.in/h-upload/2023/04/16/468586-atique-ahmed-1.jpg',
+    publishedAt: '2023-04-28T07:26:45Z',
+    source: {
+      name: 'Live Law - Indian Legal News',
+      url: 'https://www.livelaw.in'
+    }
+  },
+  {
+    title: 'Atiq Ahmad killing: SC asks UP govt to put on record measures taken',
+    description: 'The Supreme Court sought a report from the Uttar Pradesh government on the killing of gangster Atiq Ahmad and his brother Ashraf on April 15. | Latest News India',
+    content: 'The Supreme Court on Friday sought a report from the Uttar Pradesh government on the killing of gangster-turned-politician Atiq Ahmad and his brother Ashraf at Prayagraj hospital on April 15. The court order came on a PIL filed by advocate Vishal Tiw... [1219 chars]',
+    url: 'https://www.hindustantimes.com/india-news/supreme-court-up-measures-killing-of-atiq-ahmad-brother-ashraf-101682665506970.html',
+    image: 'https://www.hindustantimes.com/ht-img/img/2023/04/28/1600x900/Ashraf-and-Atiq-Ahmad-were-shot-dead-on-April-15--_1682665706887_1682665724043.jpg',
+    publishedAt: '2023-04-28T07:10:26Z',
+    source: { name: 'Hindustan Times', url: 'https://www.hindustantimes.com' }
+  },
+  {
+    title: "'Dhoni was just sitting there when CSK needed sixes': Ex-AUS star flabbergasted",
+    description: 'The Australia star expressed his shock at MS Dhoni not batting at all during the match against Rajasthan Royals on Thursday. | Cricket',
+    content: "Chennai Super Kings faced a big defeat in their clash against Rajasthan Royals on Thursday night, as MS Dhoni's side dropped to 3rd spot in the points table. The Super Kings failed to chased down a 203-run target at the Sawai Man Singh Stadium in Jai... [1632 chars]",
+    url: 'https://www.hindustantimes.com/cricket/watching-dhoni-sit-there-when-csk-needed-sixes-i-was-like-can-someone-get-out-ex-australia-star-flabbergasted-101682663059714.html',
+    image: 'https://www.hindustantimes.com/ht-img/img/2023/04/28/1600x900/ANI-20230417322-0_1682665290870_1682665312057.jpg',
+    publishedAt: '2023-04-28T07:05:21Z',
+    source: { name: 'Hindustan Times', url: 'https://www.hindustantimes.com' }
+  },
+  {
+    title: 'Ambitious genome project shows how humans fit with other mammals',
+    description: 'The findings in the ambitious Zoonomia Project identified parts of the genome functionally important in people and other mammals and showed how certain mutations can cause disease.',
+    content: 'Scientists on Thursday unveiled the results of a project comparing the genomes of 240 mammal species – from aardvarks and aye-ayes to zebus and zebras, as well as people – to trace evolutionary changes spanning 100 million years, pinpointing genetic ... [3972 chars]',
+    url: 'https://indianexpress.com/article/technology/science/genome-project-humans-mammals-8580677/',
+    image: 'https://images.indianexpress.com/2023/04/Cheetah-mammals-20230428.jpg',
+    publishedAt: '2023-04-28T06:39:30Z',
+    source: { name: 'The Indian Express', url: 'https://indianexpress.com' }
+  },
+  {
+    title: 'Asteroid Warning! NASA Issues Alert As Three Asteroids Approaching Earth Today; Know If They Will Strike Our Planet',
+    description: 'In order to have enough time to warn the public if an asteroid changes course for whatever reason, NASA continues to watch them. 🔬 Asteroid Warning! NASA Issues Alert As Three Asteroids Approaching Earth Today; Know If They Will Strike Our Planet.',
+    content: "Mumbai, April 28: One of the few ideas that has constantly held people's interest is the existence of galaxies, planets, asteroids, and meteors. Scientists and researchers are closely monitoring each space object to gain more knowledge about it. Aste... [2022 chars]",
+    url: 'https://www.latestly.com/technology/science/asteroid-warning-nasa-issues-alert-as-three-asteroids-approaching-earth-today-know-if-they-will-strike-our-planet-5089042.html',
+    image: 'https://st1.latestly.com/wp-content/uploads/2023/04/Asteroid-784x441.jpg',
+    publishedAt: '2023-04-28T06:30:29Z',
+    source: { name: 'LatestLY', url: 'https://www.latestly.com' }
+  },
+  {
+    title: 'Alia Bhatt, Janhvi, Kajol, Pooja Hegde and other stars, who wore what to awards',
+    description: "The 68th Filmfare Awards brought together Bollywood's biggest stars on the red carpet in Mumbai. Read on to discover who wore what at this star-studded event. | Fashion Trends",
+    content: "The 68th Filmfare Awards was an extravaganza that saw the who's who of Bollywood descend at the Jio World Convention Centre in Mumbai to attend the biggest Bollywood awards night. From A-listers to up-and-coming stars, the event was packed with power... [5042 chars]",
+    url: 'https://www.hindustantimes.com/lifestyle/fashion/alia-bhatt-janhvi-kapoor-kajol-pooja-hegde-alaya-f-and-other-stars-who-wore-what-to-awards-all-pics-inside-101682657053718.html',
+    image: 'https://www.hindustantimes.com/ht-img/img/2023/04/28/1600x900/photo_2023-04-28_11-28-58_1682661638911_1682661649513.jpg',
+    publishedAt: '2023-04-28T06:07:24Z',
+    source: { name: 'Hindustan Times', url: 'https://www.hindustantimes.com' }
+  },
+  {
+    title: "Ponniyin Selvan 2 First Review Says Vikram-Aishwarya Rai's Film Is Bigger & Better Than Baahubali 2",
+    description: "Fans sing praises for PS-2 after it's release in cinema halls on April 28. Some even called it better than Bahubali 2.",
+    content: 'The much talked about sequel of 2022 Mani Ratnam’s magnum opus Ponniyin Selvan 1 is out and it seems to be competing with its predecessor in terms of reception from the audience. The release of PS-2 has really amped up the fans and those who happened... [4413 chars]',
+    url: 'https://www.news18.com/movies/ponniyin-selvan-2-review-vikram-aishwarya-rai-mani-ratnam-film-better-than-baahubali-7662523.html',
+    image: 'https://images.news18.com/ibnlive/uploads/2023/04/news18-5-25-168257455816x9.png',
+    publishedAt: '2023-04-28T05:55:00Z',
+    source: { name: 'News18', url: 'https://www.news18.com' }
+  },
+  {
+    title: "Rajnath Singh chairs SCO defence ministers' meeting",
+    description: 'Defence Ministers of the Shanghai Cooperation Organisation (SCO) on April 28 deliberated on pressing regional security challenges and related issues at a conclave hosted by New Delhi.',
+    content: 'April 28, 2023 11:21 am | Updated 01:14 pm IST - NEW DELHI\n' +
+      'Defence Ministers of India, Russia, China and other member nations of the Shanghai Cooperation Organisation (SCO) on April 28 deliberated on pressing regional security challenges and related ... [2085 chars]',
+    url: 'https://www.thehindu.com/news/national/rajnath-singh-chairs-sco-defence-ministers-meeting/article66788343.ece',
+    image: 'https://th-i.thgim.com/public/incoming/3orufx/article66788385.ece/alternates/LANDSCAPE_1200/PTI04_28_2023_RPT041B.jpg',
+    publishedAt: '2023-04-28T05:51:00Z',
+    source: { name: 'The Hindu', url: 'https://www.thehindu.com' }
+  }
+]
