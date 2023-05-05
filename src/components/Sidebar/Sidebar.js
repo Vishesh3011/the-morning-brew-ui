@@ -163,7 +163,7 @@ function PersistentDrawerLeft() {
         <DrawerHeader color='#B2B2B2'>
           <Link to={'/login'}>
             <div onClick className='navbarOptionsSmall navbarOptions'>
-              <Avatar name={`${user !== null ? user.email.substr(0, user.email.indexOf('@')) : 'Guest'}`} round={true} size="65" className='userAvatar' />
+              <Avatar name={`${user !== null ? user.userName : 'Guest'}`} round={true} size="65" className='userAvatar' />
               <p className='navbarOption'>Hello, &nbsp; &nbsp;</p>
               <p className='navbarOption'>
                 {user !== null ? user.userName : 'Guest'}
@@ -209,7 +209,7 @@ function PersistentDrawerLeft() {
               }
           </ListItem>
           <ListItem className="sideBarListItem">
-            <Link to="/SavedNews">
+            <Link to="/news/saved">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <BookmarkBorderIcon />

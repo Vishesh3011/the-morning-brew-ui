@@ -1,0 +1,27 @@
+.navbarSearch{
+    margin-top: 5rem;
+    margin-left: 22.5rem;
+    display: flex;
+    padding: .4rem;
+    /* margin-left: auto; */
+    margin-right: auto;
+}
+
+.navbarSearchDiv{
+    width: 45rem;
+    height: 3rem;
+    padding-top: 0.8rem;
+}
+
+.navbarSearchBar{
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 2rem;
+    padding-left: 1rem;
+    font-size: 18px;
+}
+
+.navbarOptionsIcon{
+    margin-top: 1.4rem;
+    cursor: pointer;
+}

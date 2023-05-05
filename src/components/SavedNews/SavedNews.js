@@ -7,39 +7,29 @@ import { useAuth } from '../Login/AuthContext';
 import NewsCard from '../NewsCard/NewsCard';
 
 import './SavedNews.css'
+import { fetchSavedNews } from '../../apis/SaveNewsForUser';
+import { useSelector } from 'react-redux';
 
 
 function SavedNews() {
-    const [{ savedNews }, dispatch] = useStateValue();
-
     const [news, setNews] = useState([]);
 
-    const currentUser = useAuth();    
+    const user = useSelector(state => state.user.user)
 
     useEffect (() => {
-        if(currentUser){
-            db
-            .collection('users')
-            .doc(currentUser?.uid)
-            .collection('savedNews')
-            .orderBy('created', 'desc')
-            .onSnapshot(snapshot => (
-                setNews(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    data: doc.data()
-                })))            
-            ))
+        const fetchNews = async () => {
+          const savedNewsResponse = await fetchSavedNews(user.userId)
+          console.log("zzzzzzzzzz", savedNewsResponse)
+          setNews(savedNewsResponse)
         }
-        else{
-            setNews([]);
-        }
-    })
+        fetchNews()
+    }, [])
 
   return (
     <div className='home'>
       <section className='news' id = "home">
             {news.map(ns => (
-            <NewsCard className='homeNewsCard' key = {ns.source.id} title = {ns.title} description = {ns.description} image = {ns.urlToImage} link = {ns.url}/>
+            <NewsCard className='homeNewsCard' key = {ns.newsId} title = {ns.title} image = {ns.image} link = {ns.url}/>
             ))}
       </section>
     </div>

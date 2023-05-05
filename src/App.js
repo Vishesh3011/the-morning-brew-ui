@@ -7,12 +7,15 @@ import Login from './components/Login/Login';
 import ResponsiveDrawer from './components/Sidebar/Sidebar';
 
 import { AuthProvider, useAuth } from './components/Login/AuthContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import DatedNews from './components/DatedNews/DatedNews';
 import NewsPage from './components/Home/NewsPage';
 import AboutUs from './components/AboutUs/AboutUs';
 import { getLocalStorage } from './util/LocalStorage';
 import { useSelector } from 'react-redux';
+import SavedNews from './components/SavedNews/SavedNews';
+import SearchBar from './SearchBar/searchBar';
+import SearchedNews from './components/SearchedNews/searchedNews';
 
 function App() {
   // const context = useAuth();
@@ -21,9 +24,20 @@ function App() {
 
   useEffect(() => {
     console.log(user)
-    user !== null ? navigate("/") : navigate("/login")
+    user !== null ? navigate("/news/general") : navigate("/login")
   }, [])
 
+
+  const [search, setSearch] = useState("");
+  // const []
+
+  const [ShowSearchedNews, setShowSearchedNews] = useState(false)
+
+
+  // useEffect(() => {
+
+  //   ShowSearchedNews &&
+  // }, [ShowSearchedNews])
   
 
   {/* {!currentUser } */}
@@ -31,14 +45,16 @@ function App() {
       // <AuthProvider>
       <div>
         <ResponsiveDrawer />
+        <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/>
         <Routes>
           <Route path = "/" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
           <Route path = "/login" element = {<Login/>}/>
           <Route path = "/signup" element = {<SignUp/>}/>
-          <Route path = "/datedNews" element = {<DatedNews/>}/>
+          <Route path = "/news/dated" element = {<DatedNews/>}/>
           <Route path = "/news/:category" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
-          <Route path = "/aboutUs" element = {<AboutUs/>}/>
-          {/* <Route path = "" */}
+          <Route path = "/about-us" element = {<AboutUs/>}/>
+          <Route path = "/news/saved" element = {<SavedNews/>}/>
+          <Route path = "/news/search/:search" element = {<SearchedNews setSearch={setSearch}  search = {search}/>}/>
         </Routes>
       </div>
       // </AuthProvider>

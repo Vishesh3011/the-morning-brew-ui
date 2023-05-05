@@ -14,27 +14,30 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { NewsData } from '../../Feature/newsSlice';
 import { CircleLoader, PropagateLoader, SyncLoader } from 'react-spinners';
+import { fetchNewsByCategory } from '../../apis/NewsClient';
 
 function NewsPage({ type, country, q }) {
   const [newsData, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const [reload, setReload] = useState(false);
   
-  const category = useParams()
+  const {category} = useParams()
   const dispatch = useDispatch();
 
 
-  const { news, isLoading } = useSelector(NewsData);
+  // const { news, isLoading } = useSelector(NewsData);
 
   useEffect(() => {
     async function getNewsArticles() {
-      dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
+      // dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
+      console.log(category)
+      const news = await fetchNewsByCategory(category)
       console.log("here", news)
       setNews(news);
     }
     
      getNewsArticles();
-  }, [category, reload, news]);
+  }, [category, reload]);
 
   const handleSearchBarChange = async (event) => {
     const q = event.target.value;
@@ -46,22 +49,27 @@ function NewsPage({ type, country, q }) {
       {/* <section className='appName'>
         <h1>The Morning Brew</h1>
       </section> */}
-      <div className='navbarSearch'>
+      {/* <div className='navbarSearch'>
         <div className='navbarSearchDiv'>
           <input value={search} type='text' name='search' className='navbarSearchBar' onChange={handleSearchBarChange} />
         </div>
         <div>
           <SearchIcon className='navbarOptionsIcon' onClick={() => setReload(!reload)} />
         </div>
-      </div>
+      </div> */}
       <section className='news' id="home">
-        {isLoading ? 
+        {/* {isLoading ? 
         <div className='loader'>
           <PropagateLoader size="30" color="#b1aeae"/>
         </div> 
-        :  news.map((ns, index) => (
+        :  
+        news.map((ns, index) => (
           // ns.urlToImage &&
           <NewsCard className='homeNewsCard' key={index} title={ns.title} description={ns.description} image={ns.image} link={ns.url} datePublished={ns.publishedAt} author={ns.author} source={ns.source.name} />
+        ))} */}
+
+      { newsData.map(ns => (
+          <NewsCard className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image={ns.image} link={ns.url} datePublished={ns.publishedAt}/>
         ))}
       </section>
     </div>
