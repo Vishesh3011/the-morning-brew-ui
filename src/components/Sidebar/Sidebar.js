@@ -285,7 +285,7 @@ function PersistentDrawerLeft() {
             </Link>
           </ListItem> */}
           <ListItem className="sideBarListItem">
-            <Link to="/aboutUs">
+            <Link to="/about-us">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <InfoIcon />
