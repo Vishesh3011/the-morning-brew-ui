@@ -4,6 +4,7 @@ import { fetchNewsBySearch } from "../../apis/NewsClient";
 import './searchedNews.css'
 import NewsCard from "../NewsCard/NewsCard";
 import { useParams } from "react-router-dom";
+import NewsBox from "../NewsBox/NewsBox";
 
 function SearchedNews({ search, setSearch }) {
   const [news, setNews] = useState([]);
@@ -25,7 +26,7 @@ function SearchedNews({ search, setSearch }) {
     <div className='home'>
       <section className='news' id="home">
         {news.map(ns => (
-          <NewsCard className='homeNewsCard' key={ns.newsId} title={ns.title} image={ns.image} link={ns.url} />
+          <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
         ))}
       </section>
     </div>

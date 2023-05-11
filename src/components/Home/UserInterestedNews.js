@@ -7,6 +7,7 @@ import NewsCard from '../NewsCard/NewsCard';
 import './NewsPage.css';
 import { PropagateLoader } from 'react-spinners';
 import { fetchInterestedNews } from '../../apis/InterestedNews';
+import NewsBox from '../NewsBox/NewsBox';
 
 const UserInterestedNews = () => {
     const [newsData, setNews] = useState([]);
@@ -41,7 +42,7 @@ const UserInterestedNews = () => {
         ))} */}
         
         { newsData.map(ns => (
-          <NewsCard className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image={ns.image_url} link={ns.url} datePublished={ns.publishedAt}/>
+          <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
         ))}
       </section>
     </div>

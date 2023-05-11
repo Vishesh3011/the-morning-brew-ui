@@ -9,6 +9,7 @@ import NewsCard from '../NewsCard/NewsCard';
 import './SavedNews.css'
 import { fetchSavedNews } from '../../apis/SaveNewsForUser';
 import { useSelector } from 'react-redux';
+import NewsBox from '../NewsBox/NewsBox';
 
 
 function SavedNews() {
@@ -29,7 +30,7 @@ function SavedNews() {
     <div className='home'>
       <section className='news' id = "home">
             {news.map(ns => (
-            <NewsCard className='homeNewsCard' key = {ns.newsId} title = {ns.title} image = {ns.image_url} link = {ns.url}/>
+            <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
             ))}
       </section>
     </div>
