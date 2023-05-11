@@ -26,7 +26,7 @@ const UserInterestedNews = () => {
       console.log("here", news)
       setNews(news);
     }
-    user.userId && getInterestedNewsArticles();
+    user?.userId && getInterestedNewsArticles();
   }, [user]);
 
   return (

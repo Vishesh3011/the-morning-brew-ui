@@ -23,7 +23,7 @@ function App() {
   const user = useSelector(state => state.user.user)
 
   useEffect(() => {
-    console.log(user)
+    console.log("zzzzzzzzzzzzzzzzz" ,user)
     user !== null ? navigate("/") : navigate("/login")
   }, [])
 
