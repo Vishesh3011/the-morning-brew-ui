@@ -31,7 +31,7 @@ export const SubBarData = [
     },
     {
         title: 'Science',
-        path: 'news/science',
+        path: 'news/technology',
         icon: <ScienceIcon/>
     },
     // {
@@ -44,11 +44,11 @@ export const SubBarData = [
         path: 'news/india',
         icon: <FlagIcon/>
     },
-    {
-        title: 'Health',
-        path: 'news/health',
-        icon: <BloodtypeIcon/>
-    }
+    // {
+    //     title: 'Health',
+    //     path: 'news/health',
+    //     icon: <BloodtypeIcon/>
+    // }
 ]
 
 export default SubBarData

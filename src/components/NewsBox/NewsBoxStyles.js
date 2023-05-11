@@ -69,6 +69,9 @@ export const NewsDate = styled.p`
     font-size: 1rem;
 ` 
 
-export const NewsLikeIcon = styled.div`
+export const NewsLikeIcon = styled.button`
     margin-left: auto;
+    background-color: transparent;
+    color: var(--color-light);
+    cursor: pointer;
 `

@@ -10,29 +10,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
-  const [saved, setSaved ] = useState(false)
-
+const NewsBoxWithOutSave = ({ newsId, title, summary, image_url, url, publishedAt }) => {
   const user = useSelector(state => state.user.user)
 
   function truncate(str, n){
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 }
-
-  const handleSaveNews = async () => {
-     const responseSave = await saveNews(user.userId, newsId)
-     console.log(responseSave)
-     const responseInterest = await addInterests(user.userId, title)
-     console.log(responseInterest)
-      setSaved(true)
-  }
-
-  const handleUnSaveNews = async () => {
-    console.log(newsId, title, user.userId)
-     const responseSave = await unSaveNews(user.userId, newsId)
-      console.log(responseSave)
-      setSaved(false)
-  }
 
   const handleInterests = async () => {
     console.log(newsId, title, user.userId)
@@ -40,8 +23,12 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
     console.log(responseInterest)
   }
 
+  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+  const dateTimeFormat = new Intl.DateTimeFormat('en-IN', options);
+
   return (
-    <Link to = {`/news/content/${newsId}`} onClick={(event) => { event.preventDefault(); handleInterests({newsId, title})}}>
+    <a target = "_blank" href = {url} onClick={() => handleInterests({newsId, title})}>
       <NewsBoxContainer>
         <NewsBoxHeader>
             <NewsTitleDescHeader>
@@ -51,15 +38,11 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
             <NewsBoxImage><img src={image_url}/></NewsBoxImage>
         </NewsBoxHeader>
         <NewsBoxFooter>
-            {publishedAt && <NewsDate>Published on {publishedAt}</NewsDate>}
-            {!saved ? 
-            <NewsLikeIcon onClick={() => handleSaveNews({newsId, title})}><FavoriteBorderIcon/></NewsLikeIcon>
-          :
-            <NewsLikeIcon onClick={() => handleSaveNews({newsId, title})}><FavoriteIcon/></NewsLikeIcon>}
+            {publishedAt && <NewsDate>Published on {dateTimeFormat.format(new Date(publishedAt))}</NewsDate>}
         </NewsBoxFooter>
       </NewsBoxContainer>
-    </Link>
+    </a>
   )
 }
 
-export default NewsBox
+export default NewsBoxWithOutSave

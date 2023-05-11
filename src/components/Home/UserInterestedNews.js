@@ -8,20 +8,21 @@ import './NewsPage.css';
 import { PropagateLoader } from 'react-spinners';
 import { fetchInterestedNews } from '../../apis/InterestedNews';
 import NewsBox from '../NewsBox/NewsBox';
+import NewsBoxWithOutSave from '../NewsBox/NewsBoxWithoutSave';
 
 const UserInterestedNews = () => {
     const [newsData, setNews] = useState([]);
 
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const user = useSelector(state => state.user.user)
 
-  const { news, isLoading } = useSelector(NewsData);
+  // const { news, isLoading } = useSelector(NewsData);
 
   useEffect(() => {
     async function getInterestedNewsArticles() {
         // console.log("zzzzzzzz", user.userId)
-    //   dispatch(getInterestedNews(user.userId));
+      // await dispatch(getInterestedNews(user.userId));
         const news = await fetchInterestedNews(user.userId)
       console.log("here", news)
       setNews(news);
@@ -32,17 +33,15 @@ const UserInterestedNews = () => {
   return (
     <div className='home'>
       <section className='news' id="home">
-      {/* {isLoading ? 
+        {/* {isLoading ? 
         <div className='loader'>
           <PropagateLoader size="30" color="#b1aeae"/>
         </div> 
-        :  news.map((ns) => (
-          // ns.urlToImage &&
-          <NewsCard className='homeNewsCard' key={ns.newsId} title={ns.title} description={ns.summary} image={ns.image_url} link={ns.url} datePublished={ns.publishedAt}/>
-        ))} */}
-        
-        { newsData.map(ns => (
+        : newsData.map(ns => (
           <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
+        ))} */}
+        {newsData.map(ns => (
+          <NewsBoxWithOutSave className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
         ))}
       </section>
     </div>

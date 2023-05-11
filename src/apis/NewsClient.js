@@ -22,3 +22,9 @@ export const fetchNewsBySearch = async (query) => {
     console.log(response)
     return response.data;
 }
+
+export const fetchNewsByID = async (newsId) => {
+    const response = await request.get(`/${newsId}`)
+    console.log(response)
+    return response.data;
+}

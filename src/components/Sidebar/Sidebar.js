@@ -28,6 +28,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import logo from '../images/logo3.png';
 
@@ -164,7 +165,7 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
 
         }}
         variant="persistent"
-        anchor="left"
+        // anchor="left"
         open={open}
       >
         <DrawerHeader color='#B2B2B2'>
@@ -177,9 +178,9 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
               </p>
             </div>
           </Link>
-          <IconButton onClick={handleDrawerClose}>
+          {/* <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#EEEEEE' }} /> : <ChevronRightIcon />}
-          </IconButton>
+          </IconButton> */}
         </DrawerHeader>
         <Divider color="#B2B2B2" />
         <List>
@@ -215,16 +216,16 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
               </div>
               }
           </ListItem>
-          <ListItem className="sideBarListItem">
+          {user && <ListItem className="sideBarListItem">
             <Link to="/news/saved">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
-                  <BookmarkBorderIcon />
+                  <FavoriteBorderIcon />
                 </ListItemIcon>
                 <ListItemText>Saved News</ListItemText>
               </ListItemButton>
             </Link>
-          </ListItem>
+          </ListItem>}
           {/* <ListItem>
             <Link to = "/Help">
               <ListItemButton>
@@ -239,7 +240,7 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
         <Divider color="#B2B2B2" />
         <List className="sideBarList" >
           <ListItem className="sideBarListItem">
-            <Link to="news/general">
+            <Link to="news/world">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
                   <FeedIcon />
@@ -248,7 +249,7 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem className="sideBarListItem">
+          {/* <ListItem className="sideBarListItem">
             <Link to="/datedNews">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
@@ -257,7 +258,7 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
                 <ListItemText>Top News by Date</ListItemText>
               </ListItemButton>
             </Link>
-          </ListItem>
+          </ListItem> */}
           <ListItem className="sideBarListItem">
             <div className="toFlex" onClick={showSubNav}>
               <div>

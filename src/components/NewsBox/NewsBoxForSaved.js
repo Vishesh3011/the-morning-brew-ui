@@ -10,8 +10,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
-  const [saved, setSaved ] = useState(false)
+const NewsBoxForSaved = ({ newsId, title, summary, image_url, url, publishedAt }) => {
+  const [saved, setSaved ] = useState(true)
 
   const user = useSelector(state => state.user.user)
 
@@ -51,15 +51,15 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
             <NewsBoxImage><img src={image_url}/></NewsBoxImage>
         </NewsBoxHeader>
         <NewsBoxFooter>
-            {publishedAt && <NewsDate>Published on {publishedAt}</NewsDate>}
+            {publishedAt && <NewsDate>Published At: {publishedAt}</NewsDate>}
             {!saved ? 
             <NewsLikeIcon onClick={() => handleSaveNews({newsId, title})}><FavoriteBorderIcon/></NewsLikeIcon>
           :
-            <NewsLikeIcon onClick={() => handleSaveNews({newsId, title})}><FavoriteIcon/></NewsLikeIcon>}
+            <NewsLikeIcon onClick={() => handleUnSaveNews({newsId, title})}><FavoriteIcon/></NewsLikeIcon>}
         </NewsBoxFooter>
       </NewsBoxContainer>
     </Link>
   )
 }
 
-export default NewsBox
+export default NewsBoxForSaved

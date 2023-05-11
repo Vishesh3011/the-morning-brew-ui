@@ -17,6 +17,7 @@ import SavedNews from './components/SavedNews/SavedNews';
 import SearchBar from './SearchBar/searchBar';
 import SearchedNews from './components/SearchedNews/searchedNews';
 import UserInterestedNews from './components/Home/UserInterestedNews';
+import NewsDetails from './components/NewsDetails/NewsDetails';
 
 function App() {
   const navigate = useNavigate()
@@ -39,11 +40,12 @@ function App() {
           <Route path = "/" element = {<UserInterestedNews/>}/>
           <Route path = "/login" element = {<Login/>}/>
           <Route path = "/signup" element = {<SignUp/>}/>
-          <Route path = "/news/dated" element = {<DatedNews/>}/>
-          <Route path = "/news/:category" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
+          {/* <Route path = "/news/dated" element = {<DatedNews/>}/> */}
+          <Route path = "/news/:category" element = {<NewsPage/>}/>
           <Route path = "/about-us" element = {<AboutUs/>}/>
           <Route path = "/news/saved" element = {<SavedNews/>}/>
           <Route path = "/news/search/:search" element = {<SearchedNews setSearch={setSearch}  search = {search}/>}/>
+          <Route path = "/news/content/:newsId" element = {<NewsDetails/>}/>
         </Routes>
       </div>
       // </AuthProvider>
