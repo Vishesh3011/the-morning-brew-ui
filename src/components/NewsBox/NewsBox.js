@@ -19,17 +19,17 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
 }
 
   const handleSaveNews = async () => {
-    //  const responseSave = await saveNews(user.userId, newsId)
-    //  console.log(responseSave)
-    //  const responseInterest = await addInterests(user.userId, title)
-    //  console.log(responseInterest)
+     const responseSave = await saveNews(user.userId, newsId)
+     console.log(responseSave)
+     const responseInterest = await addInterests(user.userId, title)
+     console.log(responseInterest)
       setSaved(true)
   }
 
   const handleUnSaveNews = async () => {
-    // console.log(newsId, title, user.userId)
-    //  const responseSave = await unSaveNews(user.userId, newsId)
-    //   console.log(responseSave)
+    console.log(newsId, title, user.userId)
+     const responseSave = await unSaveNews(user.userId, newsId)
+      console.log(responseSave)
       setSaved(false)
   }
 
