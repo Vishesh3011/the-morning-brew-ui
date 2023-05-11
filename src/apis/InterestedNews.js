@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = axios.create({
-    baseURL: 'http://localhost:9001/userInterestedNews/user'
+    baseURL: 'http://localhost:9001/news/interests'
 })
 
 export const fetchInterestedNews = async (userId) => {

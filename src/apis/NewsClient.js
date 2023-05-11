@@ -12,7 +12,7 @@ export const fetchAllNews = async () => {
 
 export const fetchNewsByCategory = async (category) => {
     console.log(category)
-    const response = await request.get(`${category}`)
+    const response = await request.get(`category/${category}`)
     console.log("ddddddddd", response)
     return response.data;
 }

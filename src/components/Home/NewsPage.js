@@ -5,15 +5,7 @@ import './NewsPage.css';
 
 import NewsCard from '../NewsCard/NewsCard';
 import { useParams } from 'react-router-dom';
-// import { getNewsByCategory } from '../../apis/NewsCategory';
-
-import SearchIcon from '@mui/icons-material/Search';
-import { getNewsByCategory } from '../../Feature/newsSlice';
-
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { NewsData } from '../../Feature/newsSlice';
-import { CircleLoader, PropagateLoader, SyncLoader } from 'react-spinners';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchNewsByCategory } from '../../apis/NewsClient';
 
 function NewsPage({ type, country, q }) {
@@ -24,25 +16,19 @@ function NewsPage({ type, country, q }) {
   const {category} = useParams()
   const dispatch = useDispatch();
 
-
-  // const { news, isLoading } = useSelector(NewsData);
-
   useEffect(() => {
     async function getNewsArticles() {
       // dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
       console.log(category)
       const news = await fetchNewsByCategory(category)
+      // Mongo DB
+      // const news = await fetchAllNews(category)
       console.log("here", news)
       setNews(news);
     }
     
      getNewsArticles();
   }, [category, reload]);
-
-  const handleSearchBarChange = async (event) => {
-    const q = event.target.value;
-    setSearch(q);
-  }
 
   return (
     <div className='home'>
@@ -69,8 +55,13 @@ function NewsPage({ type, country, q }) {
         ))} */}
 
       { newsData.map(ns => (
-          <NewsCard className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image={ns.image} link={ns.url} datePublished={ns.publishedAt}/>
+          <NewsCard className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image={ns.image_url} link={ns.url} datePublished={ns.publishedAt}/>
         ))}
+
+        {/* Mongo DB */}
+        {/* { newsData.map(ns => (
+          <NewsCard className='homeNewsCard' key={ns._id} newsId = {ns._id} title={ns.title} image={ns.image} link={ns.url} datePublished={ns.publishedAt} summary = {ns.summary}/>
+        ))} */}
       </section>
     </div>
   )

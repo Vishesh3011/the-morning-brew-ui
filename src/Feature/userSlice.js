@@ -8,7 +8,7 @@ const request = axios.create({
 })
 
 const requestClient = axios.create({
-    baseURL: "http://localhost:9001/users",
+    baseURL: "http://localhost:9001/user",
 })
 
 export const registerUser = createAsyncThunk("register", async (values) => {
@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk("register", async (values) => {
         const responseAuth = await firebase.auth().createUserWithEmailAndPassword(email, password)
         const responseAuthUser = responseAuth.user.multiFactor.user;
         // console.log(responseAuthUser)
-        const valuesToBePassed = { userId: responseAuthUser.uid, userName: username, email: email };
+        const valuesToBePassed = { userId: responseAuthUser.uid, email: email, userName: username};
         console.log(valuesToBePassed)
         const user = await requestClient.post("", valuesToBePassed)
         console.log(user);

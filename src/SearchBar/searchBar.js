@@ -35,7 +35,7 @@ const SearchBar = ({setSearch, ShowSearchedNews, search, setShowSearchedNews}) =
   return (
     <div className='navbarSearch'>
         <div className='navbarSearchDiv'>
-          <input value={search} onChange={(e) => setSearch(e.target.value)}  type='text' name='search' className='navbarSearchBar'/>
+          <input placeholder='Search for News, Category, etc...' value={search} onChange={(e) => setSearch(e.target.value)}  type='text' name='search' className='navbarSearchBar'/>
         </div>
         <div>
           <SearchIcon className='navbarOptionsIcon' onClick={handleSearchClick}/>

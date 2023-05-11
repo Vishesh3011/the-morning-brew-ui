@@ -27,6 +27,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
 
 import logo from '../images/logo3.png';
 
@@ -180,9 +181,9 @@ function PersistentDrawerLeft() {
             <Link to="/">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
-                  <HomeIcon />
+                  <AlignHorizontalLeftIcon />
                 </ListItemIcon>
-                <ListItemText>Home</ListItemText>
+                <ListItemText>For you</ListItemText>
               </ListItemButton>
             </Link>
           </ListItem>

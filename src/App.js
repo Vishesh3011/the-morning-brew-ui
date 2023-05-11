@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import SavedNews from './components/SavedNews/SavedNews';
 import SearchBar from './SearchBar/searchBar';
 import SearchedNews from './components/SearchedNews/searchedNews';
+import UserInterestedNews from './components/Home/UserInterestedNews';
 
 function App() {
   // const context = useAuth();
@@ -24,7 +25,7 @@ function App() {
 
   useEffect(() => {
     console.log(user)
-    user !== null ? navigate("/news/general") : navigate("/login")
+    user !== null ? navigate("/") : navigate("/login")
   }, [])
 
 
@@ -47,7 +48,7 @@ function App() {
         <ResponsiveDrawer />
         <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/>
         <Routes>
-          <Route path = "/" element = {<NewsPage type = "top-headlines" country = "in"/>}/>
+          <Route path = "/" element = {<UserInterestedNews/>}/>
           <Route path = "/login" element = {<Login/>}/>
           <Route path = "/signup" element = {<SignUp/>}/>
           <Route path = "/news/dated" element = {<DatedNews/>}/>

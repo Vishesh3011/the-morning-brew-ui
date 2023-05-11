@@ -29,7 +29,7 @@ function SavedNews() {
     <div className='home'>
       <section className='news' id = "home">
             {news.map(ns => (
-            <NewsCard className='homeNewsCard' key = {ns.newsId} title = {ns.title} image = {ns.image} link = {ns.url}/>
+            <NewsCard className='homeNewsCard' key = {ns.newsId} title = {ns.title} image = {ns.image_url} link = {ns.url}/>
             ))}
       </section>
     </div>
