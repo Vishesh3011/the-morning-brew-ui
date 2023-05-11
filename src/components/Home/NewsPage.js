@@ -7,6 +7,8 @@ import NewsCard from '../NewsCard/NewsCard';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNewsByCategory } from '../../apis/NewsClient';
+import { newsArray } from '../../util/data';
+import NewsBox from '../NewsBox/NewsBox';
 
 function NewsPage({ type, country, q }) {
   const [newsData, setNews] = useState([]);
@@ -17,17 +19,17 @@ function NewsPage({ type, country, q }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getNewsArticles() {
-      // dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
-      console.log(category)
-      const news = await fetchNewsByCategory(category)
-      // Mongo DB
-      // const news = await fetchAllNews(category)
-      console.log("here", news)
-      setNews(news);
-    }
+    // async function getNewsArticles() {
+    //   // dispatch(getNewsByCategory({ type, country, category: category.category, q: search }));
+    //   console.log(category)
+    //   const news = await fetchNewsByCategory(category)
+    //   // Mongo DB
+    //   // const news = await fetchAllNews(category)
+    //   console.log("here", news)
+    //   setNews(news);
+    // }
     
-     getNewsArticles();
+    //  getNewsArticles();
   }, [category, reload]);
 
   return (
@@ -54,8 +56,8 @@ function NewsPage({ type, country, q }) {
           <NewsCard className='homeNewsCard' key={index} title={ns.title} description={ns.description} image={ns.image} link={ns.url} datePublished={ns.publishedAt} author={ns.author} source={ns.source.name} />
         ))} */}
 
-      { newsData.map(ns => (
-          <NewsCard className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image={ns.image_url} link={ns.url} datePublished={ns.publishedAt}/>
+      { newsArray.map(ns => (
+          <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
         ))}
 
         {/* Mongo DB */}

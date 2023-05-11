@@ -19,7 +19,6 @@ import SearchedNews from './components/SearchedNews/searchedNews';
 import UserInterestedNews from './components/Home/UserInterestedNews';
 
 function App() {
-  // const context = useAuth();
   const navigate = useNavigate()
   const user = useSelector(state => state.user.user)
 
@@ -30,23 +29,12 @@ function App() {
 
 
   const [search, setSearch] = useState("");
-  // const []
-
   const [ShowSearchedNews, setShowSearchedNews] = useState(false)
-
-
-  // useEffect(() => {
-
-  //   ShowSearchedNews &&
-  // }, [ShowSearchedNews])
-  
-
-  {/* {!currentUser } */}
   return (
       // <AuthProvider>
       <div>
-        <ResponsiveDrawer />
-        <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/>
+        <ResponsiveDrawer setSearch= {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews} />
+        {/* <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/> */}
         <Routes>
           <Route path = "/" element = {<UserInterestedNews/>}/>
           <Route path = "/login" element = {<Login/>}/>

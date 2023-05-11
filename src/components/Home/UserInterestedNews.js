@@ -25,8 +25,8 @@ const UserInterestedNews = () => {
       console.log("here", news)
       setNews(news);
     }
-    getInterestedNewsArticles();
-  }, []);
+    user.userId && getInterestedNewsArticles();
+  }, [user]);
 
   return (
     <div className='home'>

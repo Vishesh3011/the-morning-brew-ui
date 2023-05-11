@@ -40,6 +40,7 @@ import { getLocalStorage } from '../../util/LocalStorage';
 import Avatar from 'react-avatar';
 import Swal from 'sweetalert2';
 import swal from 'sweetalert';
+import SearchBar from '../../SearchBar/searchBar';
 
 const drawerWidth = 300;
 
@@ -69,7 +70,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-function PersistentDrawerLeft() {
+function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearchedNews}) {
   const theme = useTheme();
 
   let [open, setOpen] = React.useState(true);
@@ -122,6 +123,10 @@ function PersistentDrawerLeft() {
   }, [window.innerWidth <= 850])
 
 
+  // const [search, setSearch] = useState("");
+  // const [ShowSearchedNews, setShowSearchedNews] = useState(false)
+
+
   return (
     <Box sx={{ display: 'flex' }} className="Sidebar">
       {/* <CssBaseline /> */}
@@ -141,6 +146,7 @@ function PersistentDrawerLeft() {
               <img src={logo} alt="" className='navbarLogoImage' />
             </Link>
           </div>
+          <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/>
         </Toolbar>
       </AppBar>
 
@@ -177,7 +183,7 @@ function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider color="#B2B2B2" />
         <List>
-          <ListItem className="sideBarListItem">
+          {user && <ListItem className="sideBarListItem">
             <Link to="/">
               <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
                 <ListItemIcon sx={{ color: '#B2B2B2' }}>
@@ -186,7 +192,7 @@ function PersistentDrawerLeft() {
                 <ListItemText>For you</ListItemText>
               </ListItemButton>
             </Link>
-          </ListItem>
+          </ListItem>}
           <ListItem className="sideBarListItem">
             {user === null ? 
             <Link to = "/login">

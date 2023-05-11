@@ -3,14 +3,14 @@
     color: var(--color-primary);
 }
 
-.news{
+/* .news{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-left: 20rem;
     column-gap: 2rem;
     row-gap: 3rem;
     margin-right: auto;
-}
+} */
 
 @media screen and (max-width: 1024px){
     .news{
