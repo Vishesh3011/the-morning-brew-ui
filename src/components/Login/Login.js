@@ -20,15 +20,18 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user.user);
+  const { user, isError } = useSelector((state) => state.user);
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(email, password);
     dispatch(loginUser({ email, password }));
-    console.log(user?.interests?.length > 0, "here ");
-    swal("Welcome back!", "Login successful.", "success");
-    navigate("/");
+
+    console.log("isError check", isError);
+
+    // swal("Welcome back!", "Login successful.", "success");
+
+    // navigate("/");ss
   };
 
   return (

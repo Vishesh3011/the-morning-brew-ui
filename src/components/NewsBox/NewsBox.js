@@ -19,8 +19,18 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
+const NewsBox = ({
+  newsId,
+  title,
+  summary,
+  image_url,
+  url,
+  publishedAt,
+  isSaved,
+}) => {
   const [saved, setSaved] = useState(false);
+
+  const [saveCheck, setSaveCheck] = useState(false);
 
   const user = useSelector((state) => state.user.user);
 
@@ -49,6 +59,20 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
     console.log(responseInterest);
   };
 
+  useEffect(() => {
+    console.log("isSaved", isSaved);
+    setSaved(isSaved);
+  }, [isSaved]);
+
+  // useEffect(() => {
+  //   console.log("look here");
+  //   const checkIfNewsSaved = async () => {
+  //     const response = await checkIfNewsSaved(user.userId, newsId);
+  //     console.log("check if save", response);
+  //     setSaveCheck(response);
+  //   };
+  //   checkIfNewsSaved();
+  // }, []);
   return (
     <NewsBoxContainer>
       <Link
@@ -75,7 +99,7 @@ const NewsBox = ({ newsId, title, summary, image_url, url, publishedAt }) => {
             <FavoriteBorderIcon />
           </NewsLikeIcon>
         ) : (
-          <NewsLikeIcon onClick={() => handleSaveNews({ newsId, title })}>
+          <NewsLikeIcon onClick={() => handleUnSaveNews({ newsId, title })}>
             <FavoriteIcon />
           </NewsLikeIcon>
         )}

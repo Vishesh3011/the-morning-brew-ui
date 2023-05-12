@@ -63,14 +63,13 @@ const NewsBoxForSaved = ({
   };
 
   return (
-    <Link
-      to={`/news/content/${newsId}`}
-      onClick={(event) => {
-        event.preventDefault();
-        handleInterests({ newsId, title });
-      }}
-    >
-      <NewsBoxContainer>
+    <NewsBoxContainer>
+      <Link
+        to={`/news/content/${newsId}`}
+        onClick={() => {
+          handleInterests({ newsId, title });
+        }}
+      >
         <NewsBoxHeader>
           <NewsTitleDescHeader>
             <NewsBoxTitle>{truncate(title, 100)}</NewsBoxTitle>
@@ -80,20 +79,20 @@ const NewsBoxForSaved = ({
             <img src={image_url} />
           </NewsBoxImage>
         </NewsBoxHeader>
-        <NewsBoxFooter>
-          {publishedAt && <NewsDate>Published At: {publishedAt}</NewsDate>}
-          {!saved ? (
-            <NewsLikeIcon onClick={() => handleSaveNews({ newsId, title })}>
-              <FavoriteBorderIcon />
-            </NewsLikeIcon>
-          ) : (
-            <NewsLikeIcon onClick={() => handleUnSaveNews({ newsId, title })}>
-              <FavoriteIcon />
-            </NewsLikeIcon>
-          )}
-        </NewsBoxFooter>
-      </NewsBoxContainer>
-    </Link>
+      </Link>
+      <NewsBoxFooter>
+        {publishedAt && <NewsDate>Published At: {publishedAt}</NewsDate>}
+        {!saved ? (
+          <NewsLikeIcon onClick={() => handleSaveNews({ newsId, title })}>
+            <FavoriteBorderIcon />
+          </NewsLikeIcon>
+        ) : (
+          <NewsLikeIcon onClick={() => handleUnSaveNews({ newsId, title })}>
+            <FavoriteIcon />
+          </NewsLikeIcon>
+        )}
+      </NewsBoxFooter>
+    </NewsBoxContainer>
   );
 };
 

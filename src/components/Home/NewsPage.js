@@ -1,36 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import './NewsPage.css';
+import "./NewsPage.css";
 // import './Loader.css'
 
-import NewsCard from '../NewsCard/NewsCard';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNewsByCategory } from '../../apis/NewsClient';
-import { newsArray } from '../../util/data';
-import NewsBox from '../NewsBox/NewsBox';
+import NewsCard from "../NewsCard/NewsCard";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNewsByCategory } from "../../apis/NewsClient";
+import { newsArray } from "../../util/data";
+import NewsBox from "../NewsBox/NewsBox";
+import { fetchSavedNews } from "../../apis/SaveNewsForUser";
 
 function NewsPage({ type, country, q }) {
   const [newsData, setNews] = useState([]);
   const [search, setSearch] = useState("");
-  const [reload, setReload] = useState(false);
-  
-  const {category} = useParams()
+
+  const { category } = useParams();
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
+
+  // newsdata
 
   useEffect(() => {
     async function getNewsArticles() {
-      console.log(category)
-      const news = await fetchNewsByCategory(category)
-      console.log("here", news)
-      setNews(news);
+      const news = await fetchNewsByCategory(category);
+
+      console.log("news", news);
+
+      const savedNews = await fetchSavedNews(user.userId);
+      let count = 0;
+
+      var newsArray;
+      if (savedNews?.length > 0) {
+        newsArray = news.map((ns) => {
+          const savedArticle = savedNews.find((sn) => sn.newsId === ns.newsId);
+          const isSaved = Boolean(savedArticle);
+
+          return { ...ns, isSaved };
+        });
+      } else {
+        newsArray = news.map((ns) => {
+          return { ...ns, isSaved: false };
+        });
+      }
+
+      console.log("newsArray", newsArray);
+
+      setNews(newsArray);
     }
-    
-     getNewsArticles();
-  }, [category, reload]);
+
+    getNewsArticles();
+  }, [category]);
 
   return (
-    <div className='home'>
+    <div className="home">
       {/* <section className='appName'>
         <h1>The Morning Brew</h1>
       </section> */}
@@ -42,7 +66,7 @@ function NewsPage({ type, country, q }) {
           <SearchIcon className='navbarOptionsIcon' onClick={() => setReload(!reload)} />
         </div>
       </div> */}
-      <section className='news' id="home">
+      <section className="news" id="home">
         {/* {isLoading ? 
         <div className='loader'>
           <PropagateLoader size="30" color="#b1aeae"/>
@@ -53,8 +77,18 @@ function NewsPage({ type, country, q }) {
           <NewsCard className='homeNewsCard' key={index} title={ns.title} description={ns.description} image={ns.image} link={ns.url} datePublished={ns.publishedAt} author={ns.author} source={ns.source.name} />
         ))} */}
 
-      { newsData.map(ns => (
-          <NewsBox className='homeNewsCard' key={ns.newsId} newsId = {ns.newsId} title={ns.title} image_url={ns.image_url} summary={ns.summary} url={ns.url} publishedAt={ns.published_date}/>
+        {newsData.map((ns) => (
+          <NewsBox
+            className="homeNewsCard"
+            key={ns.newsId}
+            newsId={ns.newsId}
+            title={ns.title}
+            image_url={ns.image_url}
+            summary={ns.summary}
+            url={ns.url}
+            publishedAt={ns.published_date}
+            isSaved={ns.isSaved}
+          />
         ))}
 
         {/* Mongo DB */}
@@ -63,7 +97,7 @@ function NewsPage({ type, country, q }) {
         ))} */}
       </section>
     </div>
-  )
+  );
 }
 
-export default NewsPage
+export default NewsPage;

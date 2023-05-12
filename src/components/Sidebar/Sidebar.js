@@ -178,20 +178,23 @@ function PersistentDrawerLeft({
           <Link to={"/login"}>
             <div onClick className="navbarOptionsSmall navbarOptions">
               <Avatar
-                name={`${user !== null ? user.userName : "Guest"}`}
+                name={
+                  user === null || typeof user === "undefined"
+                    ? "Guest"
+                    : user.userName
+                }
                 round={true}
                 size="65"
                 className="userAvatar"
               />
               <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
               <p className="navbarOption">
-                {user !== null ? user.userName : "Guest"}
+                {user === null || typeof user === "undefined"
+                  ? "Guest"
+                  : user.userName}
               </p>
             </div>
           </Link>
-          {/* <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#EEEEEE' }} /> : <ChevronRightIcon />}
-          </IconButton> */}
         </DrawerHeader>
         <Divider color="#B2B2B2" />
         <List>
