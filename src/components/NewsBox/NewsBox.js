@@ -19,6 +19,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import Swal from "sweetalert2";
+import "../../Feature/userSlice.css";
+
 const NewsBox = ({
   newsId,
   title,
@@ -39,11 +42,19 @@ const NewsBox = ({
   }
 
   const handleSaveNews = async () => {
-    const responseSave = await saveNews(user.userId, newsId);
-    console.log(responseSave);
-    const responseInterest = await addInterests(user.userId, title);
-    console.log(responseInterest);
-    setSaved(true);
+    try {
+      const responseSave = await saveNews(user.userId, newsId);
+      console.log(responseSave);
+      const responseInterest = await addInterests(user.userId, title);
+      console.log(responseInterest);
+      setSaved(true);
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Can't save news.",
+        text: "Please make sure you have logged in.",
+      });
+    }
   };
 
   const handleUnSaveNews = async () => {

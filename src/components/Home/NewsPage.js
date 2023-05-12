@@ -28,17 +28,24 @@ function NewsPage({ type, country, q }) {
 
       console.log("news", news);
 
-      const savedNews = await fetchSavedNews(user.userId);
-      let count = 0;
-
       var newsArray;
-      if (savedNews?.length > 0) {
-        newsArray = news.map((ns) => {
-          const savedArticle = savedNews.find((sn) => sn.newsId === ns.newsId);
-          const isSaved = Boolean(savedArticle);
 
-          return { ...ns, isSaved };
-        });
+      if (user !== null) {
+        const savedNews = await fetchSavedNews(user.userId);
+        if (savedNews?.length > 0) {
+          newsArray = news.map((ns) => {
+            const savedArticle = savedNews.find(
+              (sn) => sn.newsId === ns.newsId
+            );
+            const isSaved = Boolean(savedArticle);
+
+            return { ...ns, isSaved };
+          });
+        } else {
+          newsArray = news.map((ns) => {
+            return { ...ns, isSaved: false };
+          });
+        }
       } else {
         newsArray = news.map((ns) => {
           return { ...ns, isSaved: false };

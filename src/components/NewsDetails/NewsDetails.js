@@ -24,6 +24,9 @@ import { useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+import Swal from "sweetalert2";
+import "../../Feature/userSlice.css";
+
 const NewsDetails = () => {
   const [news, setNews] = useState();
   const [saved, setSaved] = useState(false);
@@ -60,9 +63,17 @@ const NewsDetails = () => {
   //   const dateTimeFormat = new Intl.DateTimeFormat('en-IN', options);
 
   const handleSaveNews = async () => {
-    const responseSave = await saveNews(user.userId, newsId);
-    console.log(responseSave);
-    setSaved(true);
+    try {
+      const responseSave = await saveNews(user.userId, newsId);
+      console.log(responseSave);
+      setSaved(true);
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Can't save news.",
+        text: "Please make sure you have logged in.",
+      });
+    }
   };
 
   const handleUnSaveNews = async () => {

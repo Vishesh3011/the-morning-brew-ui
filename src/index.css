@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300&family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle&family=Newsreader:opsz,wght@6..72,300&family=Poppins:wght@300&display=swap');
 
 * {
   padding: 0;
@@ -35,7 +36,7 @@ html{
 }
 
 body{
-  font-family: 'Roboto';
+  font-family: 'News Cycle', sans-serif;
   background: var(--color-bg);
   color: var(--color-white);
   line-height: 1.7;

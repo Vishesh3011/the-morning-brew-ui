@@ -15,14 +15,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LoginIcon from "@mui/icons-material/Login";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import HomeIcon from "@mui/icons-material/Home";
 import FeedIcon from "@mui/icons-material/Feed";
 import CategoryIcon from "@mui/icons-material/Category";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import InfoIcon from "@mui/icons-material/Info";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -38,10 +33,8 @@ import SubMenu from "./SubMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Feature/userSlice";
 import { empty_interested_news } from "../../Feature/newsSlice";
-import { getLocalStorage } from "../../util/LocalStorage";
 import Avatar from "react-avatar";
 import Swal from "sweetalert2";
-// import swal from "sweetalert";
 
 import SearchBar from "../../SearchBar/searchBar";
 
@@ -81,16 +74,10 @@ function PersistentDrawerLeft({
   ShowSearchedNews,
   setShowSearchedNews,
 }) {
-  const theme = useTheme();
-
   let [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   const [error, setError] = useState("");
@@ -155,7 +142,6 @@ function PersistentDrawerLeft({
         }
       }
     });
-    
   };
 
   const [subNav, setSubNav] = useState(false);
@@ -172,7 +158,7 @@ function PersistentDrawerLeft({
   // const [ShowSearchedNews, setShowSearchedNews] = useState(false)
 
   return (
-    <Box sx={{ display: "flex" }} className="Sidebar">
+    <Box sx={{ display: "flex", fontFamily: "News Cycle" }} className="Sidebar">
       {/* <CssBaseline /> */}
       <AppBar position="fixed" open={open}>
         <Toolbar className="navbar">
@@ -217,29 +203,27 @@ function PersistentDrawerLeft({
       >
         <div style={{ height: "7rem" }}>
           <DrawerHeader color="#B2B2B2">
-            <Link to={"/login"}>
-              <div
-                onClick
-                className="navbarOptionsSmall navbarOptions sidebarHeader"
-              >
-                <Avatar
-                  name={
-                    user === null || typeof user === "undefined"
-                      ? "Guest"
-                      : user.userName
-                  }
-                  round={true}
-                  size="65"
-                  className="userAvatar"
-                />
-                <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
-                <p className="navbarOption">
-                  {user === null || typeof user === "undefined"
+            <div
+              onClick
+              className="navbarOptionsSmall navbarOptions sidebarHeader"
+            >
+              <Avatar
+                name={
+                  user === null || typeof user === "undefined"
                     ? "Guest"
-                    : user.userName}
-                </p>
-              </div>
-            </Link>
+                    : user.userName
+                }
+                round={true}
+                size="65"
+                className="userAvatar"
+              />
+              <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
+              <p className="navbarOption">
+                {user === null || typeof user === "undefined"
+                  ? "Guest"
+                  : user.userName}
+              </p>
+            </div>
           </DrawerHeader>
         </div>
 
@@ -311,7 +295,7 @@ function PersistentDrawerLeft({
                   <ListItemIcon sx={{ color: "#B2B2B2" }}>
                     <FavoriteBorderIcon />
                   </ListItemIcon>
-                  <ListItemText>Saved News</ListItemText>
+                  <ListItemText>Liked News</ListItemText>
                 </ListItemButton>
               </Link>
             </ListItem>

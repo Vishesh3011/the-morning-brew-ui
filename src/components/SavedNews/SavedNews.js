@@ -11,6 +11,7 @@ import { fetchSavedNews } from "../../apis/SaveNewsForUser";
 import { useSelector } from "react-redux";
 import NewsBox from "../NewsBox/NewsBox";
 import NewsBoxForSaved from "../NewsBox/NewsBoxForSaved";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function SavedNews() {
   const [news, setNews] = useState([]);
@@ -29,7 +30,7 @@ function SavedNews() {
   return (
     <div className="home">
       <section className="news" id="home">
-        {news.map((ns) => (
+        {/* {news.map((ns) => (
           <NewsBoxForSaved
             className="homeNewsCard"
             setNews={setNews}
@@ -41,7 +42,27 @@ function SavedNews() {
             url={ns.url}
             publishedAt={ns.published_date}
           />
-        ))}
+        ))} */}
+        {news?.length > 0 ? (
+          news.map((ns) => (
+            <NewsBoxForSaved
+              className="homeNewsCard"
+              setNews={setNews}
+              key={ns.newsId}
+              newsId={ns.newsId}
+              title={ns.title}
+              image_url={ns.image_url}
+              summary={ns.summary}
+              url={ns.url}
+              publishedAt={ns.published_date}
+            />
+          ))
+        ) : (
+          <div className="messageDisplay">
+            <FavoriteIcon fontSize="large" />
+            <div>No liked news found.</div>
+          </div>
+        )}
       </section>
     </div>
   );

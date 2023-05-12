@@ -18,7 +18,7 @@
 }
 
 .navbarLogoImage{
-    height: 7rem;
+    height: 4rem;
     /* margin-left: 1rem; */
 }
 
@@ -32,6 +32,7 @@
     margin-right: 5rem;
     /* margin-top: .5rem; */
     margin-bottom: .5rem;
+    font-family: "News Cycle";
 }
 
 .navbarUserIcon{
@@ -53,7 +54,8 @@
     margin-top: 1rem;
     font-size: 18px;
     /* margin-bottom: 1rem; */
-    color: var(--color-primary-vairant)
+    color: var(--color-primary-vairant);
+    font-family: "News Cycle";
 }
 
 .navbarOptionsIcon{

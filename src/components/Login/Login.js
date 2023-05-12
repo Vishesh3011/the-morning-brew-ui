@@ -9,7 +9,6 @@ import "./Login.css";
 import { loginUser } from "../../Feature/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import swal from "sweetalert";
 import { useEffect } from "react";
 
 function Login() {

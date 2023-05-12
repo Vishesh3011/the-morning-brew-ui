@@ -39,7 +39,7 @@ const UserInterestedNews = () => {
 
       if (user?.interests == null) {
         console.log("interest is zerpo");
-        navigate("/news/general");
+        navigate("/news/world");
       }
     }
   }, [user]);

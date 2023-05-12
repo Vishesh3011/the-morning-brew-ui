@@ -3,6 +3,12 @@
     color: var(--color-primary);
 }
 
+.messageDisplay {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 12rem;
+}
+
 /* .news{
     display: grid;
     grid-template-columns: 1fr 1fr;
