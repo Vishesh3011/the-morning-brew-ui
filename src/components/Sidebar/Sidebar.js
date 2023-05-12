@@ -30,7 +30,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import logo from "../images/logo3.png";
+import logo from "../images/logo1.PNG";
 
 import { SubBarData } from "./SubBarData";
 import "./Sidebar.css";
@@ -174,28 +174,34 @@ function PersistentDrawerLeft({
         // anchor="left"
         open={open}
       >
-        <DrawerHeader color="#B2B2B2">
-          <Link to={"/login"}>
-            <div onClick className="navbarOptionsSmall navbarOptions">
-              <Avatar
-                name={
-                  user === null || typeof user === "undefined"
+        <div style={{ height: "7rem" }}>
+          <DrawerHeader color="#B2B2B2">
+            <Link to={"/login"}>
+              <div
+                onClick
+                className="navbarOptionsSmall navbarOptions sidebarHeader"
+              >
+                <Avatar
+                  name={
+                    user === null || typeof user === "undefined"
+                      ? "Guest"
+                      : user.userName
+                  }
+                  round={true}
+                  size="65"
+                  className="userAvatar"
+                />
+                <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
+                <p className="navbarOption">
+                  {user === null || typeof user === "undefined"
                     ? "Guest"
-                    : user.userName
-                }
-                round={true}
-                size="65"
-                className="userAvatar"
-              />
-              <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
-              <p className="navbarOption">
-                {user === null || typeof user === "undefined"
-                  ? "Guest"
-                  : user.userName}
-              </p>
-            </div>
-          </Link>
-        </DrawerHeader>
+                    : user.userName}
+                </p>
+              </div>
+            </Link>
+          </DrawerHeader>
+        </div>
+
         <Divider color="#B2B2B2" />
         <List>
           {user && (

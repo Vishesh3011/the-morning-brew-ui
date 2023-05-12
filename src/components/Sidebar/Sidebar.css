@@ -2,6 +2,10 @@
     /* border-right: solid 1rem #fff; */
 }
 
+.sidebarHeader{
+    /* height: 10rem; */
+}
+
 .navbar{
     display: flex;
     gap: 1rem;
@@ -14,7 +18,7 @@
 }
 
 .navbarLogoImage{
-    height: 4.5rem;
+    height: 7rem;
     /* margin-left: 1rem; */
 }
 
