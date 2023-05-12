@@ -30,7 +30,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import logo from "../images/logo1.PNG";
+import logo from "../images/logo1.png";
 
 import { SubBarData } from "./SubBarData";
 import "./Sidebar.css";
@@ -41,8 +41,11 @@ import { empty_interested_news } from "../../Feature/newsSlice";
 import { getLocalStorage } from "../../util/LocalStorage";
 import Avatar from "react-avatar";
 import Swal from "sweetalert2";
-import swal from "sweetalert";
+// import swal from "sweetalert";
+
 import SearchBar from "../../SearchBar/searchBar";
+
+import "../../Feature/userSlice.css";
 
 const drawerWidth = 300;
 
@@ -98,23 +101,61 @@ function PersistentDrawerLeft({
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    swal({
+    // swal({
+    //   title: "Are you sure you want to logout?",
+    //   text: "",
+    //   dangerMode: true,
+    // }).then(async (willLogout) => {
+    //   if (willLogout) {
+    //     try {
+    //       await dispatch(logout());
+    //       await dispatch(empty_interested_news());
+    //       swal("Logged Out Successfully!", "", "success");
+    //       navigate("/login");
+    //     } catch (error) {
+    //       setError(error.message);
+    //       swal("Error Logging Out!", "", "error");
+    //     }
+    //   }
+    // });
+
+    Swal.fire({
       title: "Are you sure you want to logout?",
       text: "",
-      dangerMode: true,
-    }).then(async (willLogout) => {
-      if (willLogout) {
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, logout",
+      cancelButtonText: "No, cancel",
+      reverseButtons: true,
+      customClass: {
+        popup: "swal2-popup-custom",
+        title: "swal2-title-custom",
+        content: "swal2-content-custom",
+        confirmButton: "swal2-confirm-button-custom",
+        cancelButton: "swal2-cancel-button-custom",
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
         try {
           await dispatch(logout());
           await dispatch(empty_interested_news());
-          swal("Logged Out Successfully!", "", "success");
-          navigate("/login");
+          Swal.fire({
+            title: "Logged Out Successfully!",
+            icon: "success",
+          }).then(() => {
+            navigate("/login");
+          });
         } catch (error) {
           setError(error.message);
-          swal("Error Logging Out!", "", "error");
+          Swal.fire({
+            title: "Error Logging Out!",
+            text: error.message,
+            icon: "error",
+          });
         }
       }
     });
+    
   };
 
   const [subNav, setSubNav] = useState(false);

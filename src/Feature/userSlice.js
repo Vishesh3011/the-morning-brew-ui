@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import firebase from "firebase/compat/app";
 import { getLocalStorage, setLocalStorage } from "../util/LocalStorage";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
+
+import "./userSlice.css"
 
 const request = axios.create({
   baseURL: "",
@@ -46,12 +48,35 @@ export const loginUser = createAsyncThunk("login", async (values) => {
     if (user.data) {
       window.location.href = "/";
       setLocalStorage("user", user.data);
-      swal("Welcome back!", "Login successful.", "success");
+      // swal("Welcome back!", "Login successful.", "success");
+      Swal.fire({
+        title: 'Login successful!',
+        icon: 'success',
+        text: `Welcome ${user.data.userName}!`,
+        customClass: {
+          popup: 'swal2-popup-custom',
+          title: 'swal2-title-custom',
+          content: 'swal2-content-custom',
+          confirmButton: 'swal2-confirm-button-custom',
+          cancelButton: 'swal2-cancel-button-custom'
+        }
+      });
 
       return user.data;
     }
   } catch (err) {
-    swal("Cannot Login.", "Login Not successful.", "warning");
+    Swal.fire({
+      title: 'Error! Cannot login',
+      icon: 'error',
+      text: 'Invalid credentials or something went wrong. Please try again.',
+      customClass: {
+        popup: 'swal2-popup-custom',
+        title: 'swal2-title-custom',
+        content: 'swal2-content-custom',
+        confirmButton: 'swal2-confirm-button-custom',
+        cancelButton: 'swal2-cancel-button-custom'
+      }
+    });
 
     console.log("login error", err);
   }

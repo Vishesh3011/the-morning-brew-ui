@@ -1,0 +1,27 @@
+.swal2-popup {
+    background-color: #282c34;
+    color: #f1f1f1;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .swal2-title {
+    color: #f1f1f1;
+  }
+  
+  .swal2-content {
+    color: #f1f1f1;
+  }
+  
+  .swal2-actions button {
+    background-color: #61dafb;
+    color: #282c34;
+    border-color: #61dafb;
+    font-weight: bold;
+  }
+  
+  .swal2-actions button:hover {
+    background-color: #282c34;
+    color: #f1f1f1;
+    border-color: #61dafb;
+  }
+  

@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../../Feature/userSlice';
 import Swal from 'sweetalert2';
 
+import "../../Feature/userSlice.css";
+
 function SignUp() {
     const navigate = useNavigate();
 
@@ -20,7 +22,12 @@ function SignUp() {
     const handleRegister = (e) => {
         e.preventDefault();
         if(password !== confPassword){
-            Swal.fire("Sign-up failed.", "Passwords do not match!", "error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Sign-up failed.',
+                text: 'Password and Confirm password do not match!'
+              });
+              
             return
         }else{
             // console.log(email, username, password, confPassword)
