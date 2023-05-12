@@ -35,6 +35,7 @@ import { logout } from "../../Feature/userSlice";
 import { empty_interested_news } from "../../Feature/newsSlice";
 import Avatar from "react-avatar";
 import Swal from "sweetalert2";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import SearchBar from "../../SearchBar/searchBar";
 
@@ -293,7 +294,7 @@ function PersistentDrawerLeft({
                   }}
                 >
                   <ListItemIcon sx={{ color: "#B2B2B2" }}>
-                    <FavoriteBorderIcon />
+                    <FavoriteIcon />
                   </ListItemIcon>
                   <ListItemText>Liked News</ListItemText>
                 </ListItemButton>
