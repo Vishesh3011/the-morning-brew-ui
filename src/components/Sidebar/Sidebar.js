@@ -1,82 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { styled, useTheme } from "@mui/material/styles";
+import { Link, useNavigate } from "react-router-dom";
 
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import LoginIcon from '@mui/icons-material/Login';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import HomeIcon from '@mui/icons-material/Home';
-import FeedIcon from '@mui/icons-material/Feed';
-import CategoryIcon from '@mui/icons-material/Category';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import InfoIcon from '@mui/icons-material/Info';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AlignHorizontalLeftIcon from '@mui/icons-material/AlignHorizontalLeft';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LoginIcon from "@mui/icons-material/Login";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import HomeIcon from "@mui/icons-material/Home";
+import FeedIcon from "@mui/icons-material/Feed";
+import CategoryIcon from "@mui/icons-material/Category";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import InfoIcon from "@mui/icons-material/Info";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import logo from '../images/logo3.png';
+import logo from "../images/logo3.png";
 
-import { SubBarData } from './SubBarData';
-import './Sidebar.css';
-import SubMenu from './SubMenu';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../Feature/userSlice';
-import { getLocalStorage } from '../../util/LocalStorage';
-import Avatar from 'react-avatar';
-import Swal from 'sweetalert2';
-import swal from 'sweetalert';
-import SearchBar from '../../SearchBar/searchBar';
+import { SubBarData } from "./SubBarData";
+import "./Sidebar.css";
+import SubMenu from "./SubMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Feature/userSlice";
+import { empty_interested_news } from "../../Feature/newsSlice";
+import { getLocalStorage } from "../../util/LocalStorage";
+import Avatar from "react-avatar";
+import Swal from "sweetalert2";
+import swal from "sweetalert";
+import SearchBar from "../../SearchBar/searchBar";
 
 const drawerWidth = 300;
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-start',
+  justifyContent: "flex-start",
 }));
 
-function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearchedNews}) {
+function PersistentDrawerLeft({
+  search,
+  setSearch,
+  ShowSearchedNews,
+  setShowSearchedNews,
+}) {
   const theme = useTheme();
 
   let [open, setOpen] = React.useState(true);
-
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -86,32 +90,32 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
     setOpen(false);
   };
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   // const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const user = useSelector(state => state.user.user)
-  console.log("zzzzzzz", user)
-  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.user);
+  console.log("zzzzzzz", user);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     swal({
       title: "Are you sure you want to logout?",
       text: "",
-      dangerMode: true
+      dangerMode: true,
     }).then(async (willLogout) => {
       if (willLogout) {
         try {
-          await dispatch(logout())
+          await dispatch(logout());
+          await dispatch(empty_interested_news());
           swal("Logged Out Successfully!", "", "success");
-          navigate('/login')
-        }
-        catch (error) {
-          setError(error.message)
+          navigate("/login");
+        } catch (error) {
+          setError(error.message);
           swal("Error Logging Out!", "", "error");
         }
       }
     });
-  }
+  };
 
   const [subNav, setSubNav] = useState(false);
 
@@ -121,15 +125,13 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
       console.log("widht");
       setOpen(false);
     }
-  }, [window.innerWidth <= 850])
-
+  }, [window.innerWidth <= 850]);
 
   // const [search, setSearch] = useState("");
   // const [ShowSearchedNews, setShowSearchedNews] = useState(false)
 
-
   return (
-    <Box sx={{ display: 'flex' }} className="Sidebar">
+    <Box sx={{ display: "flex" }} className="Sidebar">
       {/* <CssBaseline /> */}
       <AppBar position="fixed" open={open}>
         <Toolbar className="navbar">
@@ -138,16 +140,21 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
           </IconButton>
-          <div className='navbarLogo'>
+          <div className="navbarLogo">
             <Link to="/">
-              <img src={logo} alt="" className='navbarLogoImage' />
+              <img src={logo} alt="" className="navbarLogoImage" />
             </Link>
           </div>
-          <SearchBar setSearch = {setSearch} search = {search} ShowSearchedNews={ShowSearchedNews}  setShowSearchedNews={setShowSearchedNews}/>
+          <SearchBar
+            setSearch={setSearch}
+            search={search}
+            ShowSearchedNews={ShowSearchedNews}
+            setShowSearchedNews={setShowSearchedNews}
+          />
         </Toolbar>
       </AppBar>
 
@@ -156,25 +163,29 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
           width: drawerWidth,
 
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: '#212121',
+            boxSizing: "border-box",
+            backgroundColor: "#212121",
             color: "#EEEEEE",
           },
-
         }}
         variant="persistent"
         // anchor="left"
         open={open}
       >
-        <DrawerHeader color='#B2B2B2'>
-          <Link to={'/login'}>
-            <div onClick className='navbarOptionsSmall navbarOptions'>
-              <Avatar name={`${user !== null ? user.userName : 'Guest'}`} round={true} size="65" className='userAvatar' />
-              <p className='navbarOption'>Hello, &nbsp; &nbsp;</p>
-              <p className='navbarOption'>
-                {user !== null ? user.userName : 'Guest'}
+        <DrawerHeader color="#B2B2B2">
+          <Link to={"/login"}>
+            <div onClick className="navbarOptionsSmall navbarOptions">
+              <Avatar
+                name={`${user !== null ? user.userName : "Guest"}`}
+                round={true}
+                size="65"
+                className="userAvatar"
+              />
+              <p className="navbarOption">Hello, &nbsp; &nbsp;</p>
+              <p className="navbarOption">
+                {user !== null ? user.userName : "Guest"}
               </p>
             </div>
           </Link>
@@ -184,48 +195,77 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
         </DrawerHeader>
         <Divider color="#B2B2B2" />
         <List>
-          {user && <ListItem className="sideBarListItem">
-            <Link to="/">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                <ListItemIcon sx={{ color: '#B2B2B2' }}>
-                  <AlignHorizontalLeftIcon />
-                </ListItemIcon>
-                <ListItemText>For you</ListItemText>
-              </ListItemButton>
-            </Link>
-          </ListItem>}
-          <ListItem className="sideBarListItem">
-            {user === null ? 
-            <Link to = "/login">
-              <div>
-                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
-                    <LoginIcon />
+          {user && (
+            <ListItem className="sideBarListItem">
+              <Link to="/">
+                <ListItemButton
+                  sx={{
+                    color: "#B2B2B2",
+                    transition: "ease-out all 500ms",
+                    "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "#B2B2B2" }}>
+                    <AlignHorizontalLeftIcon />
                   </ListItemIcon>
-                  <ListItemText>Login</ListItemText>
+                  <ListItemText>For you</ListItemText>
                 </ListItemButton>
-              </div>
-            </Link> :
+              </Link>
+            </ListItem>
+          )}
+          <ListItem className="sideBarListItem">
+            {user === null ? (
+              <Link to="/login">
+                <div>
+                  <ListItemButton
+                    sx={{
+                      color: "#B2B2B2",
+                      transition: "ease-out all 500ms",
+                      "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                    }}
+                  >
+                    <ListItemIcon sx={{ color: "#B2B2B2" }}>
+                      <LoginIcon />
+                    </ListItemIcon>
+                    <ListItemText>Login</ListItemText>
+                  </ListItemButton>
+                </div>
+              </Link>
+            ) : (
               <div onClick={handleLogout}>
-                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
+                <ListItemButton
+                  sx={{
+                    color: "#B2B2B2",
+                    transition: "ease-out all 500ms",
+                    "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "#B2B2B2" }}>
                     <LogoutIcon />
                   </ListItemIcon>
                   <ListItemText>Logout</ListItemText>
                 </ListItemButton>
               </div>
-              }
+            )}
           </ListItem>
-          {user && <ListItem className="sideBarListItem">
-            <Link to="/news/saved">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                <ListItemIcon sx={{ color: '#B2B2B2' }}>
-                  <FavoriteBorderIcon />
-                </ListItemIcon>
-                <ListItemText>Saved News</ListItemText>
-              </ListItemButton>
-            </Link>
-          </ListItem>}
+          {user && (
+            <ListItem className="sideBarListItem">
+              <Link to="/news/saved">
+                <ListItemButton
+                  sx={{
+                    color: "#B2B2B2",
+                    transition: "ease-out all 500ms",
+                    "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "#B2B2B2" }}>
+                    <FavoriteBorderIcon />
+                  </ListItemIcon>
+                  <ListItemText>Saved News</ListItemText>
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          )}
           {/* <ListItem>
             <Link to = "/Help">
               <ListItemButton>
@@ -238,11 +278,17 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
           </ListItem> */}
         </List>
         <Divider color="#B2B2B2" />
-        <List className="sideBarList" >
+        <List className="sideBarList">
           <ListItem className="sideBarListItem">
             <Link to="news/world">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                <ListItemIcon sx={{ color: '#B2B2B2' }}>
+              <ListItemButton
+                sx={{
+                  color: "#B2B2B2",
+                  transition: "ease-out all 500ms",
+                  "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                }}
+              >
+                <ListItemIcon sx={{ color: "#B2B2B2" }}>
                   <FeedIcon />
                 </ListItemIcon>
                 <ListItemText>Latest</ListItemText>
@@ -262,20 +308,27 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
           <ListItem className="sideBarListItem">
             <div className="toFlex" onClick={showSubNav}>
               <div>
-                <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                  <ListItemIcon sx={{ color: '#B2B2B2' }}>
+                <ListItemButton
+                  sx={{
+                    color: "#B2B2B2",
+                    transition: "ease-out all 500ms",
+                    "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: "#B2B2B2" }}>
                     <CategoryIcon />
                   </ListItemIcon>
-                  <ListItemText>
-                    Categories
-                  </ListItemText>
-                  <ListItemIcon sx={{ color: '#B2B2B2' }}>{!subNav ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}</ListItemIcon>
+                  <ListItemText>Categories</ListItemText>
+                  <ListItemIcon sx={{ color: "#B2B2B2" }}>
+                    {!subNav ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+                  </ListItemIcon>
                 </ListItemButton>
               </div>
               <div>
-                {subNav && SubBarData.map((item, index) => {
-                  return <SubMenu item={item} key={index} />
-                })}
+                {subNav &&
+                  SubBarData.map((item, index) => {
+                    return <SubMenu item={item} key={index} />;
+                  })}
               </div>
             </div>
           </ListItem>
@@ -294,8 +347,14 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
           </ListItem> */}
           <ListItem className="sideBarListItem">
             <Link to="/about-us">
-              <ListItemButton sx={{ color: '#B2B2B2', transition: 'ease-out all 500ms', '&:hover': { color: '#EEEEEE', cursor: 'pointer' } }}>
-                <ListItemIcon sx={{ color: '#B2B2B2' }}>
+              <ListItemButton
+                sx={{
+                  color: "#B2B2B2",
+                  transition: "ease-out all 500ms",
+                  "&:hover": { color: "#EEEEEE", cursor: "pointer" },
+                }}
+              >
+                <ListItemIcon sx={{ color: "#B2B2B2" }}>
                   <InfoIcon />
                 </ListItemIcon>
                 <ListItemText>About Our Team</ListItemText>
@@ -308,4 +367,4 @@ function PersistentDrawerLeft({search, setSearch, ShowSearchedNews, setShowSearc
   );
 }
 
-export default PersistentDrawerLeft
+export default PersistentDrawerLeft;
